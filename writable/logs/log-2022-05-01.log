@@ -1,0 +1,136 @@
+CRITICAL - 2022-05-01 07:28:07 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 07:28:08 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 07:28:08 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 07:28:08 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 07:28:38 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 07:29:53 --> Invalid file: index.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('index', Array, true)
+#2 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(8): view('index')
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-01 08:29:47 --> Invalid file: include/header.php
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('include/header....')
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('include/header', Array, true)
+#2 C:\xampp\htdocs\SysHotel\system\Controller.php(164): view('include/header')
+#3 C:\xampp\htdocs\SysHotel\app\Controllers\Home.php(9): CodeIgniter\Controller->ViewData('index', Array)
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-01 18:33:03 --> Undefined variable: _POSTs
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(25): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 25, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-01 18:51:18 --> Undefined property: App\Controllers\Login::$modUser
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-01 18:53:07 --> Undefined property: App\Controllers\Login::$modUser
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-01 18:53:55 --> Undefined property: App\Controllers\Login::$modUser
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-01 18:54:20 --> Class 'App\Models\UsuarioModel' not found
+#0 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(809): App\Controllers\Login->__construct()
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-01 18:54:34 --> Class 'App\Models\UsuarioModel' not found
+#0 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(809): App\Controllers\Login->__construct()
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-01 18:54:35 --> Class 'App\Models\UsuarioModel' not found
+#0 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(809): App\Controllers\Login->__construct()
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-05-01 18:54:51 --> Error connecting to the database: Access denied for user ''@'localhost' (using password: NO)
+CRITICAL - 2022-05-01 18:54:51 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+#0 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(16): CodeIgniter\Database\BaseBuilder->get()
+#3 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(28): App\Models\UsuarioModel->session_valid('73708410', '$2a$07$asxx54ah...')
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-01 19:40:53 --> Call to undefined method App\Models\UsuarioModel::get_mod
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(31): CodeIgniter\Model->__call('get_mod', Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-01 19:45:45 --> Undefined variable: estado_clave
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Login.php(39): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 39, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Login->auth()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

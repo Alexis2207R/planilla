@@ -1,0 +1,48 @@
+ERROR - 2022-08-02 20:10:20 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+CRITICAL - 2022-08-02 20:10:20 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarP...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarP...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarP...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\PerfilModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarP...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(18): App\Models\PerfilModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->index()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-02 20:30:30 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+CRITICAL - 2022-08-02 20:30:30 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarU...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarU...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarU...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarU...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(25): App\Models\UsuarioModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->list_usuarios()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-02 20:49:40 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+CRITICAL - 2022-08-02 20:49:40 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarP...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarP...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarP...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\PerfilModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarP...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(18): App\Models\PerfilModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->index()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-02 20:49:53 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+CRITICAL - 2022-08-02 20:49:53 --> PROCEDURE sys_sgh.prdListarPerfiles does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarP...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarP...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarP...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\PerfilModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarP...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Perfil.php(21): App\Models\PerfilModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Perfil->list_perfiles()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Perfil))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

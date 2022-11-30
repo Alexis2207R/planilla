@@ -1,0 +1,70 @@
+ERROR - 2022-08-08 01:11:28 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+CRITICAL - 2022-08-08 01:11:28 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarU...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarU...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarU...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarU...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(25): App\Models\UsuarioModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->list_usuarios()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-08 14:29:57 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+CRITICAL - 2022-08-08 14:29:57 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarU...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarU...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarU...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarU...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(25): App\Models\UsuarioModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->list_usuarios()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-08 14:30:03 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+CRITICAL - 2022-08-08 14:30:03 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarU...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarU...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarU...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarU...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(25): App\Models\UsuarioModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->list_usuarios()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-08-08 14:34:49 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+CRITICAL - 2022-08-08 14:34:49 --> PROCEDURE sys_sgh.prdListarUsuarios does not exist
+#0 C:\xampp\htdocs\SysHotel\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarU...', 0)
+#1 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarU...')
+#2 C:\xampp\htdocs\SysHotel\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarU...')
+#3 C:\xampp\htdocs\SysHotel\app\Models\UsuarioModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarU...')
+#4 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(25): App\Models\UsuarioModel->mdlListarPerfiles()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->list_usuarios()
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-08-08 15:47:05 --> Trying to get property 'id' of non-object
+#0 C:\xampp\htdocs\SysHotel\app\Views\modules\configuracion.php(30): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 30, Array)
+#1 C:\xampp\htdocs\SysHotel\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\SysHotel\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('modules/configu...', Array, true)
+#4 C:\xampp\htdocs\SysHotel\system\Controller.php(166): view('modules/configu...', Array)
+#5 C:\xampp\htdocs\SysHotel\app\Controllers\Configuracion.php(16): CodeIgniter\Controller->ViewData('modules/configu...', Array)
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Configuracion->index()
+#7 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Configuracion))
+#8 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-08-08 15:47:16 --> syntax error, unexpected '[', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
+#0 C:\xampp\htdocs\SysHotel\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\xampp\htdocs\SysHotel\system\Common.php(1089): CodeIgniter\View\View->render('modules/configu...', Array, true)
+#2 C:\xampp\htdocs\SysHotel\system\Controller.php(166): view('modules/configu...', Array)
+#3 C:\xampp\htdocs\SysHotel\app\Controllers\Configuracion.php(16): CodeIgniter\Controller->ViewData('modules/configu...', Array)
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Configuracion->index()
+#5 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Configuracion))
+#6 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

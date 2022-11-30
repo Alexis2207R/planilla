@@ -1,0 +1,29 @@
+CRITICAL - 2022-05-13 12:58:19 --> Undefined index: clave
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(91): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 91, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->form()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-13 12:58:35 --> Undefined index: clave
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(91): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 91, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->form()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-13 12:58:55 --> Undefined index: clave
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(91): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 91, Array)
+#1 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->form()
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-13 13:52:50 --> Undefined variable: insert
+#0 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(119): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119, Array)
+#1 C:\xampp\htdocs\SysHotel\app\Controllers\Usuario.php(81): App\Controllers\Usuario->actualizar(Array)
+#2 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(832): App\Controllers\Usuario->form()
+#3 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuario))
+#4 C:\xampp\htdocs\SysHotel\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SysHotel\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

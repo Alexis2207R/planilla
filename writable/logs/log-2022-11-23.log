@@ -1,0 +1,163 @@
+CRITICAL - 2022-11-23 10:35:40 --> Invalid file: ../include/header.php
+#0 C:\xampp\htdocs\planilla\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('../include/head...')
+#1 C:\xampp\htdocs\planilla\system\Common.php(1089): CodeIgniter\View\View->render('../include/head...', Array, true)
+#2 C:\xampp\htdocs\planilla\app\Views\modules\condicion.php(1): view('../include/head...')
+#3 C:\xampp\htdocs\planilla\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\planilla\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\planilla\system\Common.php(1089): CodeIgniter\View\View->render('modules/condici...', Array, true)
+#6 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(18): view('modules/condici...', Array)
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->index()
+#8 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#9 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-11-23 10:37:11 --> Undefined property: App\Controllers\Condicion::$modCondicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(29): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->list_condicion()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-11-23 10:38:47 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+CRITICAL - 2022-11-23 10:38:47 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+#0 C:\xampp\htdocs\planilla\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL pdrListarP...', 0)
+#1 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL pdrListarP...')
+#2 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL pdrListarP...')
+#3 C:\xampp\htdocs\planilla\app\Models\PersonalModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL pdrListarP...')
+#4 C:\xampp\htdocs\planilla\app\Controllers\Personal.php(19): App\Models\PersonalModel->mdlListarPersonal()
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Personal->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Personal))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-11-23 10:42:15 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+CRITICAL - 2022-11-23 10:42:15 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+#0 C:\xampp\htdocs\planilla\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL pdrListarP...', 0)
+#1 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL pdrListarP...')
+#2 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL pdrListarP...')
+#3 C:\xampp\htdocs\planilla\app\Models\PersonalModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL pdrListarP...')
+#4 C:\xampp\htdocs\planilla\app\Controllers\Personal.php(19): App\Models\PersonalModel->mdlListarPersonal()
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Personal->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Personal))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-11-23 11:06:21 --> Undefined variable: condicion
+#0 C:\xampp\htdocs\planilla\app\Views\modules\condicion.php(41): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\planilla\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\planilla\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\planilla\system\Common.php(1089): CodeIgniter\View\View->render('modules/condici...', Array, true)
+#4 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(18): view('modules/condici...', Array)
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-11-23 11:09:21 --> Undefined variable: condicion
+#0 C:\xampp\htdocs\planilla\app\Views\modules\condicion.php(41): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\planilla\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\planilla\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\planilla\system\Common.php(1089): CodeIgniter\View\View->render('modules/condici...', Array, true)
+#4 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(19): view('modules/condici...', Array)
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-11-23 11:37:36 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 24, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 11:38:53 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 24, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 14:24:09 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 24, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 16:40:33 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 24, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 17:03:38 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 24, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 17:04:10 --> date_default_timezone_set(): Timezone ID 'América/Lima' is invalid
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'date_default_ti...', 'C:\\xampp\\htdocs...', 23, Array)
+#1 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(23): date_default_timezone_set('Am\xC3\xA9rica/Lima')
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#4 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-11-23 17:06:25 --> Undefined index: nombre_condicion
+#0 C:\xampp\htdocs\planilla\app\Controllers\Condicion.php(25): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 25, Array)
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#3 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-11-23 18:17:01 --> Call to a member function format() on string
+#0 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-11-23 18:17:19 --> Call to a member function format() on string
+#0 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Condicion->create()
+#1 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Condicion))
+#2 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-11-23 18:22:58 --> PROCEDURE db_asistencia.prdListarRemuneracion does not exist
+CRITICAL - 2022-11-23 18:22:58 --> PROCEDURE db_asistencia.prdListarRemuneracion does not exist
+#0 C:\xampp\htdocs\planilla\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL prdListarR...', 0)
+#1 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL prdListarR...')
+#2 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL prdListarR...')
+#3 C:\xampp\htdocs\planilla\app\Models\RemuneracionModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL prdListarR...')
+#4 C:\xampp\htdocs\planilla\app\Controllers\Remuneracion.php(16): App\Models\RemuneracionModel->mdlListarRemuneracion()
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Remuneracion->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Remuneracion))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-11-23 18:23:02 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+CRITICAL - 2022-11-23 18:23:02 --> PROCEDURE db_asistencia.pdrListarPersonal does not exist
+#0 C:\xampp\htdocs\planilla\system\Database\MySQLi\Connection.php(292): mysqli->query('CALL pdrListarP...', 0)
+#1 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('CALL pdrListarP...')
+#2 C:\xampp\htdocs\planilla\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('CALL pdrListarP...')
+#3 C:\xampp\htdocs\planilla\app\Models\PersonalModel.php(13): CodeIgniter\Database\BaseConnection->query('CALL pdrListarP...')
+#4 C:\xampp\htdocs\planilla\app\Controllers\Personal.php(19): App\Models\PersonalModel->mdlListarPersonal()
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Personal->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Personal))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-11-23 18:45:57 --> Undefined variable: condiciones
+#0 C:\xampp\htdocs\planilla\app\Views\modules\tipobonificaciones.php(40): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 40, Array)
+#1 C:\xampp\htdocs\planilla\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\planilla\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\planilla\system\Common.php(1089): CodeIgniter\View\View->render('modules/tipobon...', Array, true)
+#4 C:\xampp\htdocs\planilla\app\Controllers\Tipobonificacion.php(14): view('modules/tipobon...', Array)
+#5 C:\xampp\htdocs\planilla\system\CodeIgniter.php(832): App\Controllers\Tipobonificacion->index()
+#6 C:\xampp\htdocs\planilla\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Tipobonificacion))
+#7 C:\xampp\htdocs\planilla\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\planilla\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
