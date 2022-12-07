@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-12-2022 a las 20:50:04
+-- Tiempo de generación: 07-12-2022 a las 22:23:08
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -29,6 +29,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarCondicion` ()   BEGIN
 SELECT *, '' AS acciones
 FROM condicion_laboral cl
 WHERE cl.estado_condicion="1";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarPerfiles` ()   BEGIN
+SELECT *, '' AS acciones, '' AS modulos
+FROM perfil p
+WHERE p.estadoperfil = 1 OR p.estadoperfil=2;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarRemuneracion` ()   BEGIN
@@ -182,21 +188,25 @@ CREATE TABLE `modulo` (
 
 INSERT INTO `modulo` (`id_modulo`, `nombremodulo`, `urlmodulo`, `idmodulopadre`, `iconomodulo`, `estadomodulo`) VALUES
 (1, 'Planilla', NULL, 1, '<i class=\"nav-icon far fa-calendar-alt\"></i>', 1),
-(2, 'Modulo Personal', NULL, NULL, '<i class=\"nav-icon fas fa-sign-in-alt\"></i>', 1),
-(3, 'Modulo Horarios', NULL, NULL, '<i class=\"nav-icon fas fa-hand-holding-usd\"></i>', 1),
+(2, 'Personal', NULL, NULL, '<i class=\"nav-icon fas fa-sign-in-alt\"></i>', 1),
+(3, 'Mantenimiento', NULL, NULL, '<i class=\"nav-icon fas fa-hand-holding-usd\"></i>', 1),
 (4, 'Reportes', NULL, NULL, '<i class=\"nav-icon fas fa-file-alt\"></i>', 1),
 (5, 'Seguridad', NULL, NULL, '<i class=\"nav-icon fas fa-user-shield\"></i>', 1),
-(6, 'Personal', '/personal', 2, NULL, 1),
 (7, 'Remuneración', '/remuneracion', 2, NULL, 1),
 (8, 'Condición Laboral', '/condicion', 2, NULL, 1),
-(9, 'Horario', NULL, 3, NULL, 1),
 (10, 'Perfiles', '/perfil', 5, NULL, 1),
 (11, 'Configuración', '/configuracion', 5, NULL, 1),
 (12, 'Respaldo BD', '/respaldo', 5, NULL, 1),
 (13, 'Tipo Bonificación', '/tipobonificacion', 1, NULL, 1),
 (14, 'Usuarios', '/usuario', 5, NULL, 1),
-(15, 'Personal Horario', '/personalhorario', 4, '', 0),
-(32, 'planilla', '/planilla', 1, NULL, 1);
+(32, 'planilla', '/planilla', 1, NULL, 1),
+(35, 'Bonificaciones', '/bonificaciones', 3, NULL, 1),
+(36, 'Descuentos', '/descuentos', 3, NULL, 1),
+(37, 'Fecha', '/fecha', 3, NULL, 1),
+(38, 'Tipo planilla', '/tipoplanilla', 3, NULL, 1),
+(39, 'Nivel remunerativo', '/nivelremunerativo', 3, NULL, 1),
+(40, 'Planilla', '/planilla', 2, NULL, 1),
+(41, 'Personal', '/personal', 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -269,16 +279,17 @@ INSERT INTO `permiso` (`id_permiso`, `idperfilpermiso`, `idmodulo`) VALUES
 (3, 1, 3),
 (4, 1, 4),
 (5, 1, 5),
-(6, 1, 6),
-(7, 1, 7),
-(8, 1, 8),
-(9, 1, 9),
 (10, 1, 10),
 (11, 1, 11),
 (12, 1, 12),
-(13, 1, 13),
-(14, 1, 14),
-(15, 1, 15);
+(18, 1, 14),
+(19, 1, 35),
+(20, 1, 36),
+(21, 1, 37),
+(22, 1, 38),
+(23, 1, 39),
+(24, 1, 40),
+(25, 1, 41);
 
 -- --------------------------------------------------------
 
@@ -581,7 +592,7 @@ ALTER TABLE `mes`
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `nivel_remunerativo`
@@ -599,7 +610,7 @@ ALTER TABLE `perfil`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
