@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2022 a las 19:57:08
+-- Servidor: localhost
+-- Tiempo de generación: 07-12-2022 a las 20:50:04
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -18,8 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_asistencia`
+-- Base de datos: `planilla`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarCondicion` ()   BEGIN
+SELECT *, '' AS acciones
+FROM condicion_laboral cl
+WHERE cl.estado_condicion="1";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarRemuneracion` ()   BEGIN
+SELECT *, '' AS acciones
+FROM nivel_remunerativo nr
+WHERE nr.estado_nivel="1";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `prdListarUsuarios` ()   BEGIN
+
+SELECT *, '' AS acciones
+FROM usuario u
+INNER JOIN perfil p
+ON p.id_perfil=u.idperfil_usuario
+WHERE u.estado=1 OR u.estado=2;
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 

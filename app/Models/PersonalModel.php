@@ -10,8 +10,8 @@ class PersonalModel extends Model{
   protected $allowedFields = ['nombre_personal', 'paterno_personal', 'materno_personal', 'dni_personal', 'sexo_personal', 'nivel_remuneracion', 'condicion_laboral','ubicacion_dpt', 'ubicacion_prov', 'ubicacion_dist', 'direccion_personal', 'sueldo_personal', 'incentivo_personal', 'costo_dia', 'costo_hora', 'costo_minuto', 'fecha_registro', 'fecha_actualizacion', 'estado_personal'];
 
   public function mdlListarPersonal(){
-    return $this->db->query('CALL pdrListarPersonal()')
-    ->getResultArray();
+    // Aqui estaba prdListarPersonal()
+
   }
 
 //   public function mdlModulos( $idperfil ){
