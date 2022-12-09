@@ -16,4 +16,5 @@ class CondicionModel extends Model
                 ->get()
                 ->getResultArray();
   }
+
 }
