@@ -10,6 +10,7 @@ const resetform = () => {
     $(".temp").each(function() { this.remove() });
     $('#form').trigger('reset');
 }
+
 $( '#btnCancel, .close, #btnNew').on( 'click', function(){
     resetform();
 } )
@@ -1207,3 +1208,4 @@ const personal = () => {
         })
     })
 }
+
