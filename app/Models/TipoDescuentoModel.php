@@ -43,8 +43,9 @@ class TipoDescuentoModel extends Model
     public function getAllActive()
     {
         return $this->where('estado_tipo_descuento', 1)
-            ->get()
-            ->getResultArray();
+                    ->orWhere('estado_tipo_descuento', 2)
+                    ->get()
+                    ->getResultArray();
     }
 
 }

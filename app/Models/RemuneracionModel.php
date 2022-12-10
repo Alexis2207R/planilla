@@ -1,41 +1,51 @@
 <?php
+
 namespace App\Models;
+
 use CodeIgniter\Model;
 
-class RemuneracionModel extends Model{
-	
-  protected $table = 'nivel_remunerativo';
-  protected $primaryKey = 'id_remuneracion ';
-  protected $returnType = 'array';
-  protected $allowedFields = ['nivel','fecha_registro','estado_nivel'];
+class RemuneracionModel extends Model
+{
+    protected $DBGroup = 'default';
+    protected $table = 'nivel_remunerativo';
+    protected $primaryKey = 'id_remuneracion ';
+    protected $useAutoIncrement = true;
+    protected $insertID = 0;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
+    protected $allowedFields = ['id_remuneracion', 'nivel', 'fecha_registro', 'estado_nivel'];
 
-  public function mdlListarRemuneracion(){
-    return $this->db->query('CALL prdListarRemuneracion()')
-    ->getResultArray();
-  }
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_At';
 
-//   public function mdlModulos( $idperfil ){
-//     return $this->db->table('permiso p')
-//     ->join('modulo m', 'p.idmodulo=id_modulo')
-//     ->join('perfil pe', 'p.idperfilpermiso = pe.id_perfil')
-//     ->where([ 'm.estadomodulo' => 1, 'p.idperfilpermiso' => $idperfil ])
-//     ->get()->getResultArray();
-//   }
+    // Validation
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
+    protected $cleanValidationRules = true;
 
-//   public function mdlListaModulos(){
-//     return $this->db->table('modulo')
-//     ->where( [ 'estadomodulo' => 1] )
-//     ->get()->getResultArray();
-//   }
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
 
-//   public function mdlInsertPermisos( $datos ){
-//     return $this->db->table('permiso')
-//     ->insert( $datos );
-//   }
-
-//   public function mdlDeletePermisos( $id ){
-//     return $this->db->table('permiso')
-//     ->delete( ['idperfilpermiso' => $id] );
-//   }
+    public function mdListarRemuneraciones()
+    {
+        return $this->where('estado_nivel', 1)
+                    ->orWhere('estado_nivel', 2)
+                    ->get()
+                    ->getResultArray();
+    }
 
 }
