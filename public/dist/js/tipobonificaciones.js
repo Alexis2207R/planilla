@@ -2,7 +2,7 @@ const tipobonificaciones = () => {
 
   let table_tipobonificaciones = $('#tbl_tipobonificaciones').DataTable({
     ajax: {
-      url: './tipobonificacion/list_tipobonificaciones',
+      url: './tipoBonificacion/list_tipobonificaciones',
       dataSrc: '',
       type: 'POST'
     },
@@ -68,7 +68,7 @@ const tipobonificaciones = () => {
     }).then(function (result) {
       if (result.value) {
         $.ajax({
-          url: './tipobonificacion/delete_tipobonificacion',
+          url: './tipoBonificacion/delete_tipobonificacion',
           type: "POST",
           data: { item },
           dataType: "json",
@@ -109,7 +109,7 @@ const tipobonificaciones = () => {
     }).then(function (result) {
       if (result.value) {
         $.ajax({
-          url: './tipobonificacion/disabled_tipobonificacion',
+          url: './tipoBonificacion/disabled_tipobonificacion',
           type: "POST",
           data: { item },
           dataType: "json",
@@ -146,7 +146,7 @@ const tipobonificaciones = () => {
       submitHandler: function () {
         var datos = new FormData($(form_tipobonificacion)[0]);
         $.ajax({
-          url: './tipobonificacion/form',
+          url: './tipoBonificacion/form',
           type: "POST",
           data: datos,
           cache: false,
@@ -207,7 +207,7 @@ const tipobonificaciones = () => {
     const item = $(this).attr('item');
     resetform();
     $.ajax({
-      url: './tipobonificacion/edit_tipobonificacion',
+      url: './tipoBonificacion/edit_tipobonificacion',
       type: "POST",
       data: { item },
       dataType: "json",

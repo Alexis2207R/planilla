@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="card col-lg-10">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de Bonificaciones</h3>
+                    <h3 class="card-title">Lista de Tipos de Bonificaciones</h3>
 
                     <div class="card-tools">
                         <button id="btnNew" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-tipobonificacion">
