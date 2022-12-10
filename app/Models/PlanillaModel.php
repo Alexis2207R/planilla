@@ -4,17 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class YearModel extends Model
+class PlanillaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'ano';
-    protected $primaryKey       = 'id_year';
+    protected $table            = 'planilla';
+    protected $primaryKey       = 'id_planilla';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre_year', 'estado_year'];
+    protected $allowedFields    = ['id_tipo_planilla', 'id_year', 'numero_planilla', 'total_ingreso',
+                                   'total_egreso', 'total_neto', 'estado_planilla'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,17 +41,12 @@ class YearModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function mdListarYears()
+    public function mdListarPlanillas()
     {
-        return $this->where('estado_year', 1)
-                    ->orWhere('estado_year', 2)
-                    ->get()
-                    ->getResultArray();
-    }
-
-    public function getAllActive()
-    {
-        return $this->where('estado_year', 1)
+        return $this->join('tipo_planilla tp', 'tp.id_tipo_planilla = planilla.id_tipo_planilla')
+                    ->join('ano a',            'a.id_year = planilla.id_year')
+                    ->where('planilla.estado_planilla', 1)
+                    ->Orwhere('planilla.estado_planilla', 2)
                     ->get()
                     ->getResultArray();
     }

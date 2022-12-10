@@ -48,4 +48,11 @@ class BonificacionModel extends Model
                     ->get()
                     ->getResultArray();
     }
+
+    public function getAllActive()
+    {
+        return $this->where('estado_bonificacion', 1)
+                    ->get()
+                    ->getResultArray();
+    }
 }

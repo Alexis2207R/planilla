@@ -49,4 +49,10 @@ class DescuentoModel extends Model
                     ->getResultArray();
     }
 
+    public function getAllActive()
+    {
+        return $this->where('estado_descuento', 1)
+                    ->get()
+                    ->getResultArray();
+    }
 }

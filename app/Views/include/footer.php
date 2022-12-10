@@ -25,6 +25,8 @@
 <script src="<?= base_url()?>/public/plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url()?>/public/dist/js/adminlte.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="<?= base_url()?>/public/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url()?>/public/dist/js/demo.js"></script>
 <script src="<?= base_url()?>/public/dist/js/sweetalert2.all.min.js"></script>
