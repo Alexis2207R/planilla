@@ -88,18 +88,23 @@ class Planillas extends Controller
         $this->validation->setRules([
             'numero_planilla'    => 'required',
             'id_tipo_planilla'   => 'required',
-            'id_year_planilla'   => 'required'
+            'id_year'            => 'required'
         ]);
         $this->validation->withRequest($this->request)->run();
         if (!$this->validation->getErrors()) {
             $descuentos     = explode(',', $_POST['id_descuentos']);
             $bonificaciones = explode(',', $_POST['id_bonificaciones']);
+            $totalIngreso = $this->getTotalIngreso($bonificaciones);
+            $totalEgreso  = $this->getTotalEgreso($descuentos);
             if (isset($_POST['id_planilla']) && !empty($_POST['id_planilla'])) {
                 $datos = [
                     'id_planilla'       => $_POST['id_planilla'],
                     'numero_planilla'   => strtoupper($_POST['numero_planilla']),
                     'id_tipo_planilla'  => $_POST['id_tipo_planilla'],
-                    'id_year_planilla'  => $_POST['id_year_planilla'],
+                    'id_year'           => $_POST['id_year'],
+                    'total_ingreso'     => $totalIngreso,
+                    'total_egreso'      => $totalEgreso,
+                    'total_neto'        => abs($totalIngreso - $totalEgreso),
                     'descuentos'        => $descuentos,
                     'bonificaciones'    => $bonificaciones
                 ];
@@ -107,11 +112,15 @@ class Planillas extends Controller
                 return $update;
             } else {
                 $datos = [
-                    'numero_planilla'   => strtoupper($_POST['numero_planilla']),
-                    'id_tipo_planilla'  => $_POST['id_tipo_planilla'],
-                    'id_year_planilla'  => $_POST['id_year_planilla'],
-                    'descuentos'        => $descuentos,
-                    'bonificaciones'    => $bonificaciones
+                    'numero_planilla'           => strtoupper($_POST['numero_planilla']),
+                    'id_tipo_planilla'          => $_POST['id_tipo_planilla'],
+                    'id_year'                   => $_POST['id_year'],
+                    'total_ingreso'             => $totalIngreso,
+                    'total_egreso'              => $totalEgreso,
+                    'total_neto'                => abs($totalIngreso - $totalEgreso),
+                    'fecha_creacion_planilla'   => date('Y-m-d H:i:s'),
+                    'descuentos'                => $descuentos,
+                    'bonificaciones'            => $bonificaciones
                 ];
                 $insert = $this->register($datos);
                 return $insert;
@@ -126,10 +135,17 @@ class Planillas extends Controller
     {
         if ($this->request->isAjax()) {
             $planilla = $this->modPlanilla->find($_POST['item']);
+            $bonificaciones = $this->modPlanillaBonificacion->mdVerDePlanilla($_POST['item']);
+            $descuentos = $this->modPlanillaDescuento->mdVerDePlanilla($_POST['item']);
+            $data = [
+                'planilla' => $planilla,
+                'bonificaciones' => $bonificaciones,
+                'descuentos'     => $descuentos
+            ];
             if (!$planilla) {
                 return json_encode(['status' => 400, 'edit' => $planilla, 'msg' => 'Hubo un error al intentar obtener la planilla']);
             }
-            return json_encode(['status' => 200, 'edit' => $planilla, 'msg' => 'Planilla eliminado con exito']);
+            return json_encode(['status' => 200, 'edit' => $data, 'msg' => 'Planilla editado con exito']);
         } else {
             return redirect()->to(base_url());
         }
@@ -158,11 +174,59 @@ class Planillas extends Controller
         if ($this->request->getMethod() != 'post') {
             return redirect()->to(base_url());
         }
+        $descuentos     = $datos['descuentos'];
+        $bonificaciones = $datos['bonificaciones'];
+        unset($datos['descuentos']);
+        unset($datos['bonificaciones']);
         $update = $this->modPlanilla->update($_POST['id_planilla'], $datos);
+
+        // Para editar las relaciones entre planilla y descuentos - bonificaciones, elimino sus anteriores
+        // relaciones y creo una nuevas con las datos de editar
+        $this->banPlanillaDescuento($_POST['id_planilla']);
+        $this->banPlanillaBonificacion($_POST['id_planilla']);
+
+        $this->insertPlanillaDescuento($_POST['id_planilla'], $descuentos);
+        $this->insertPlanillaBonificacion($_POST['id_planilla'], $bonificaciones);
+
         if (!$update) {
             return json_encode(['status' => 400, 'update' => $update, 'msg' => 'Hubo un error al intentar actaulizar la planilla']);
         }
         return json_encode(['status' => 200, 'update' => $update, 'msg' => 'Planilla actualizado con exito']);
+    }
+
+    public function view_planilla()
+    {
+        if ($this->request->isAjax()) {
+            $planilla = $this->modPlanilla->mdVerPlanilla($_POST['item']);
+            if (!$planilla) {
+                return json_encode(['status' => 400, 'view' => $planilla, 'msg' => 'Hubo un error al intentar ver la planilla']);
+            }
+            return json_encode(['status' => 200, 'view' => $planilla, 'msg' => 'Planilla obtenido con exito']);
+        } else {
+            return redirect()->to(base_url());
+        }
+    }
+
+    private function getTotalIngreso($bonificaciones)
+    {
+        $ingreso = 0.0;
+        foreach ($bonificaciones as $bonificacion)
+        {
+            $data = $this->modBonificacion->find($bonificacion);
+            $ingreso += floatval($data['cantidad_bonificacion']);
+        }
+        return $ingreso;
+    }
+
+    private function getTotalEgreso($descuentos)
+    {
+        $egreso = 0.0;
+        foreach ($descuentos as $descuento)
+        {
+            $data = $this->modDescuento->find($descuento);
+            $egreso += floatval($data['cantidad_descuento']);
+        }
+        return $egreso;
     }
 
     private function insertPlanillaDescuento($idPlanilla, $descuentos)
@@ -182,11 +246,21 @@ class Planillas extends Controller
         foreach ($bonificaciones as $bonificacion)
         {
             $data = [
-                'id_planilla'  => $idPlanilla,
+                'id_planilla'     => $idPlanilla,
                 'id_bonificacion' => $bonificacion
             ];
             $this->modPlanillaBonificacion->insert($data);
         }
+    }
+
+    private function banPlanillaBonificacion($idPlanilla)
+    {
+        $this->modPlanillaBonificacion->banFromPlanilla($idPlanilla);
+    }
+
+    private function banPlanillaDescuento($idPlanilla)
+    {
+        $this->modPlanillaDescuento->banFromPlanilla($idPlanilla);
     }
 
 }

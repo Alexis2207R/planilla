@@ -39,4 +39,20 @@ class PlanillaDescuentoModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function mdVerDePlanilla($id)
+    {
+        return $this->join('descuentos b', 'b.id_descuento = planilla_descuento.id_descuento')
+                    ->where('planilla_descuento.id_planilla', $id)
+                    ->where('planilla_descuento.estado_planilla_descuento', 1)
+                    ->get()
+                    ->getResultArray();
+    }
+
+    public function banFromPlanilla($id)
+    {
+        return $this->where('id_planilla', $id)
+                    ->set(['estado_planilla_descuento' => 0])
+                    ->update();
+    }
 }

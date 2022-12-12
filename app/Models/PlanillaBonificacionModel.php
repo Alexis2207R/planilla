@@ -14,7 +14,7 @@ class PlanillaBonificacionModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_planilla'. 'id_bonificacion', 'estado_planilla_bonificacion'];
+    protected $allowedFields    = ['id_planilla', 'id_bonificacion', 'estado_planilla_bonificacion'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,20 @@ class PlanillaBonificacionModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function mdVerDePlanilla($id)
+    {
+        return $this->join('bonificacion b', 'b.id_bonificacion = planilla_bonificacion.id_bonificacion')
+                    ->where('planilla_bonificacion.id_planilla', $id)
+                    ->where('planilla_bonificacion.estado_planilla_bonificacion', 1)
+                    ->get()
+                    ->getResultArray();
+    }
+
+    public function banFromPlanilla($id)
+    {
+        return $this->where('id_planilla', $id)
+                    ->set(['estado_planilla_bonificacion' => 0])
+                    ->update();
+    }
 }

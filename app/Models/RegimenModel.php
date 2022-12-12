@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CargoModel extends Model
+class RegimenModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'cargo';
-    protected $primaryKey       = 'id_cargo';
+    protected $table            = 'regimen_pensional';
+    protected $primaryKey       = 'id_regimen';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre_cargo', 'estado_cargo'];
+    protected $allowedFields    = ['nombre_regimen', 'fecha_creacion', 'estado_regimen'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,18 +40,11 @@ class CargoModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-  public function mdListarCargos()
-  {
-    return $this->where('estado_cargo', 1)
-                ->orWhere('estado_cargo', 2)
-                ->get()
-                ->getResultArray();
-  }
-
     public function getAllActive()
     {
-        return $this->where('estado_cargo', 1)
-                    ->get()
-                    ->getResultArray();
+        return $this->where('estado_regimen', 1)
+            ->get()
+            ->getResultArray();
     }
+
 }

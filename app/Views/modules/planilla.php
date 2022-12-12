@@ -73,7 +73,7 @@
 
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="fornombre">NÚMERO <span class="text-danger">*</span></label>
+                                <label for="fornombre">NÚMERO PLANILLA<span class="text-danger">*</span></label>
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="numero_planilla" class="form-control form-control-sm" id="fornombre" placeholder="Número de planilla">
                                 </div>
@@ -97,7 +97,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>AÑO PLANILLA <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="id_year_planilla">
+                                <select class="form-control form-control-sm" name="id_year">
                                     <option selected disabled>Seleccionar...</option>
                                     <?php
                                     foreach ($years as $item) {
@@ -157,6 +157,128 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+<!-- Modal View Planilla -->
+<div class="modal fade" id="modal-view-planilla" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ver Planilla</h5>
+                <button type="button" class="close close-view" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="view-numero-planilla">NÚMERO PLANILLA<span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm" id="view-numero-planilla" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>TIPO PLANILLA <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" id="view-tipo-planilla" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>AÑO PLANILLA <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" id="view-id-year" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>FECHA CREACIÓN PLANILLA <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" id="view-fecha-creacion" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>BONIFICACIONES</label>
+                                <div class="row">
+                                    <div class="col-4" id="view-bonificaciones">
+                                        <ul class="nav flex-column" id="list-bonificaciones">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>DESCUENTOS</label>
+                                <div class="row">
+                                    <div class="col-4" id="view-bonificaciones">
+                                        <ul class="nav flex-column" id="list-descuentos">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="view-total-ingreso">TOTAL INGRESO<span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm" id="view-total-ingreso" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>TOTAL EGRESO <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" id="view-total-egreso" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>TOTAL NETO <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" id="view-total-neto" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success btn-sm close-view" data-dismiss="modal">Aceptar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <script type="text/javascript" src="<?= base_url() . '/public/dist/js/planillas.js' ?>">
 
 </script>
@@ -170,7 +292,8 @@
             infoTextEmpty: 'Sin elementos',
             infoText: 'Mostrando todo {0}',
             infoTextFiltered: '<span class="label label-warning">Mostrando</span> {0} de {1}',
-            filterTextClear: 'Mostrar todo'
+            filterTextClear: 'Mostrar todo',
+            moveOnSelect: false
         });
     })
 </script>

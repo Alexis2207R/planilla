@@ -38,8 +38,9 @@ const planillas = () => {
           return `<center>
                                 <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group" role="group" aria-label="First group">
-                                        <button type="button" id="edit_planilla" item="${full.id_planilla}" class="btn btn-xs btn-primary  btn-icon"><i class="icon-nd fas fa-edit"></i></button>
-                                        <button type="button" id="delete_planilla" item="${full.id_planilla}" class="btn btn-xs btn-danger btn-icon"><i class="icon-nd fas fa-trash"></i></button>
+                                        <button type="button" id="edit_planilla"   item="${full.id_planilla}" class="btn btn-xs btn-primary   btn-icon"><i class="icon-nd fas fa-edit"></i></button>
+                                        <button type="button" id="delete_planilla" item="${full.id_planilla}" class="btn btn-xs btn-danger    btn-icon"><i class="icon-nd fas fa-trash"></i></button>
+                                        <button type="button" id="view_planilla"   item="${full.id_planilla}" class="btn btn-xs btn-secondary btn-icon"><i class="icon-nd fas fa-eye"></i></button>
                                         <button type="button" status="${full.estado_planilla}" id="ban_planilla" item="${full.id_planilla}" class="btn btn-xs btn-${btn_accion.color} btn-icon"><i class="icon-nd ${btn_accion.active}"></i></button>
                                         </div>
                                 </div>
@@ -146,11 +147,11 @@ const planillas = () => {
     $.validator.setDefaults({
       submitHandler: function () {
         var datos = new FormData($(form_planilla)[0]);
-        console.log({datos});
         let descuentos = datos.getAll('descuentos');
         let bonificaciones = datos.getAll('bonificaciones');
         datos.append('id_descuentos', descuentos);
         datos.append('id_bonificaciones', bonificaciones);
+        console.log({datos});
         $.ajax({
           url: './planillas/form',
           type: "POST",
@@ -160,22 +161,20 @@ const planillas = () => {
           processData: false,
           dataType: "json",
           success: function (response) {
-
-            console.log(response);
-            // if (response.status == 200) {
-            //   Swal.fire({
-            //     position: "center",
-            //     icon: "success",
-            //     title: response.msg,
-            //     showConfirmButton: false,
-            //     timer: 1500
-            //   });
-            //   resetform();
-            //   table_planillas.ajax.reload();
-            //   $('#modal-planilla').modal('hide');
-            // } else {
-            //   Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
-            // }
+            if (response.status == 200) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: response.msg,
+                showConfirmButton: false,
+                timer: 1500
+              });
+              resetform();
+              table_planillas.ajax.reload();
+              $('#modal-planilla').modal('hide');
+            } else {
+              Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
+            }
           },
 
           error: function (err) {
@@ -194,7 +193,7 @@ const planillas = () => {
         id_tipo_planilla: {
           required: true
         },
-        id_year_planilla: {
+        id_year: {
           required: true
         }
       },
@@ -205,7 +204,7 @@ const planillas = () => {
         id_tipo_planilla: {
           required: "Campo requerido"
         },
-        id_year_planilla: {
+        id_year: {
           required: "Campo requerido"
         }
       },
@@ -234,15 +233,33 @@ const planillas = () => {
       data: { item },
       dataType: "json",
       success: function (response) {
+        if (!response)
+          return;
         response = response.edit;
-        if (response) {
-          $("#modal-planilla .form").append(`<input class="temp" type="hidden" value="${response.id_planilla}" name="id_planilla">`)
-          $('#modal-planilla [name=nombre_planilla]').val(response.nombre_planilla);
-          $('#modal-planilla [name=id_tipo_planilla]').val(response.id_tipo_planilla);
-          $('#modal-planilla [name=cantidad_planilla]').val(response.cantidad_planilla);
+        console.log(response);
+        let planilla = response.planilla;
+        let bonificaciones = response.bonificaciones;
+        let descuentos = response.descuentos;
 
-          $('#modal-planilla').modal('show');
-        }
+        $("#modal-planilla .form").append(`<input class="temp" type="hidden" value="${planilla.id_planilla}" name="id_planilla">`)
+        $('#modal-planilla [name=numero_planilla]').val(planilla.numero_planilla);
+        $('#modal-planilla [name=id_tipo_planilla]').val(planilla.id_tipo_planilla);
+        $('#modal-planilla [name=id_year]').val(planilla.id_year);
+
+        resetDualLists();
+
+        bonificaciones.forEach((item) => {
+          $('#bonificaciones option[value="' + item.id_bonificacion + '"]').prop('selected', true);
+        });
+
+        descuentos.forEach((item) => {
+          $('#descuentos option[value="' + item.id_descuento + '"]').prop('selected', true);
+        });
+
+        $('#bonificaciones').bootstrapDualListbox('refresh', true);
+        $('#descuentos').bootstrapDualListbox('refresh', true);
+
+        $('#modal-planilla').modal('show');
       },
       error: function (err) {
         Swal.fire('Error 500', `${err.statusText}`, "error");
@@ -250,9 +267,74 @@ const planillas = () => {
     })
   });
 
+  // View planilla
+  $(document).on('click', '#view_planilla', function () {
+    const item = $(this).attr('item');
+    $.ajax({
+      url: './planillas/view_planilla',
+      type: "POST",
+      data: { item },
+      dataType: "json",
+      success: function (response) {
+        if (response.status == 200) {
+          let planilla = response.view.planilla;
+          $('#view-numero-planilla').val(planilla.numero_planilla);
+          $('#view-tipo-planilla').val(planilla.nombre_tipo_planilla);
+          $('#view-id-year').val(planilla.nombre_year);
+          $('#view-fecha-creacion').val(planilla.fecha_creacion_planilla);
+
+          $('#view-total-ingreso').val(planilla.total_ingreso);
+          $('#view-total-egreso').val(planilla.total_egreso);
+          $('#view-total-neto').val(planilla.total_neto);
+
+          let bonificaciones = response.view.bonificaciones;
+          bonificaciones.forEach((item) => {
+            let li = `<li class="nav-item mt-2">
+                                            ${item.nombre_bonificacion} <span class="float-right badge bg-primary">S/ ${item.cantidad_bonificacion}</span>
+                                        </li>`;
+            $('#list-bonificaciones').append(li);
+          });
+
+          let descuentos = response.view.descuentos;
+          descuentos.forEach((item) => {
+            let li = `<li class="nav-item mt-2">
+                                            ${item.nombre_descuento} <span class="float-right badge bg-primary">S/ ${item.cantidad_descuento}</span>
+                                        </li>`;
+            $('#list-descuentos').append(li);
+          });
+
+          $('#modal-view-planilla').modal('show');
+        } else {
+          Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
+        }
+      },
+      error: function (err) {
+        Swal.fire('Error 500', `${err.statusText}`, "error");
+      }
+    });
+  });
+
+  function resetDualLists() {
+    // Funciones internas de la libreria
+    $('.removeall').trigger('click');
+  }
+
+
+
   // Esconder el modal
-  $('#btnCancel, .close, #btnNew').on('click', function () {
+  $('#btnCancel, .close').on('click', function () {
     $('#modal-planilla').modal('hide');
+  })
+
+  $('#btnNew').on('click', function () {
+    resetDualLists();
+  });
+
+  // Esconder el modal de view
+  $('.close-view').on('click', function () {
+    $('#modal-view-planilla').modal('hide');
+    $('#list-bonificaciones').empty();
+    $('#list-descuentos').empty();
   })
 
 };

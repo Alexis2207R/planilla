@@ -15,7 +15,7 @@ class PlanillaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['id_tipo_planilla', 'id_year', 'numero_planilla', 'total_ingreso',
-                                   'total_egreso', 'total_neto', 'estado_planilla'];
+                                   'total_egreso', 'total_neto', 'fecha_creacion_planilla', 'estado_planilla'];
 
     // Dates
     protected $useTimestamps = false;
@@ -51,4 +51,34 @@ class PlanillaModel extends Model
                     ->getResultArray();
     }
 
+    public function mdVerPlanilla($id)
+    {
+        $planilla = $this->join('tipo_planilla tp', 'tp.id_tipo_planilla = planilla.id_tipo_planilla')
+                         ->join('ano a',            'a.id_year = planilla.id_year')
+                         ->where('planilla.id_planilla', $id)
+                         ->get()
+                         ->getResultArray();
+        $planilla = $planilla[0];
+
+        $modPlanillaBonificacion = new PlanillaBonificacionModel();
+        $modPlanillaDescuento    = new PlanillaDescuentoModel();
+
+        $bonificaciones = $modPlanillaBonificacion->mdVerDePlanilla($id);
+        $descuentos     =  $modPlanillaDescuento->mdVerDePlanilla($id);
+
+        $data = [
+            'planilla'       => $planilla,
+            'bonificaciones' => $bonificaciones,
+            'descuentos'     => $descuentos
+        ];
+
+        return $data;
+    }
+
+    public function getAllActive()
+    {
+        return $this->where('estado_planilla', 1)
+                    ->get()
+                    ->getResultArray();
+    }
 }

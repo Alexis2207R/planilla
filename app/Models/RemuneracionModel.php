@@ -48,4 +48,10 @@ class RemuneracionModel extends Model
                     ->getResultArray();
     }
 
+    public function getAllActive()
+    {
+        return $this->where('estado_nivel', 1)
+                    ->get()
+                    ->getResultArray();
+    }
 }
