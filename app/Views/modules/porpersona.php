@@ -74,22 +74,22 @@
                     <table id="tbl_porpersonas" class="table table-hover table-sm">
                         <thead>
                             <tr>
-                                <th class="text-center">MES</th>
-                                <th>NRO PLANILLA</th>
+                                <th class="text-center "><small class="font-weight-bold">MES</small></th>
+                                <th><small class="font-weight-bold">NRO PLANILLA</small></th>
                                 <th>DIAS</th>
                                 <?php
                                 foreach ($bonificaciones as $item) {
-                                    echo '<th>' . $item['nombre_bonificacion']  . '</th>';
+                                    echo '<th><small class="font-weight-bold">' . $item['nombre_bonificacion']  . '</small></th>';
                                 }
                                 ?>
                                 <th>INGRESO</th>
                                 <?php
                                 foreach ($descuentos as $item) {
-                                    echo '<th>' . $item['nombre_descuento']  . '</th>';
+                                    echo '<th><small class="font-weight-bold">' . $item['nombre_descuento']  . '</small></th>';
                                 }
                                 ?>
-                                <th>EGRESO</th>
-                                <th>TOTAL NETO</th>
+                                <th><small class="font-weight-bold">EGRESO</small></th>
+                                <th><small class="font-weight-bold">TOTAL NETO</small></th>
                             </tr>
                         </thead>
                         <tbody>
