@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\MesModel;
 use CodeIgniter\Controller;
 
+use App\Models\MesModel;
 use App\Models\PagoModel;
 use App\Models\PersonalModel;
 use App\Models\PlanillaModel;
