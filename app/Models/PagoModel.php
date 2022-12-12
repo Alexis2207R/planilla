@@ -58,4 +58,31 @@ class PagoModel extends Model
                     ->get()
                     ->getResultArray();
     }
+
+    // Todos los anios
+    public function mdListarDePersona($idPersonal)
+    {
+        return $this->join('personal a', 'a.id_personal = pagos.id_personal')
+                    ->join('planilla b', 'b.id_planilla = pagos.id_planilla')
+                    ->join('mes d',      'd.id_mes = pagos.id_mes')
+                    ->join('ano  e',     'e.id_year = b.id_year')
+                    ->where('pagos.estado_pago', 1)
+                    ->where('a.id_personal', $idPersonal)
+                    ->get()
+                    ->getResultArray();
+    }
+
+    public function mdListarDePersonaPorAnio($idPersonal, $idYear)
+    {
+        return $this->join('personal a', 'a.id_personal = pagos.id_personal')
+                    ->join('planilla b', 'b.id_planilla = pagos.id_planilla')
+                    ->join('mes d',      'd.id_mes = pagos.id_mes')
+                    ->join('ano  e',     'e.id_year = b.id_year')
+                    ->where('pagos.estado_pago', 1)
+                    ->where('a.id_personal', $idPersonal)
+                    ->where('e.id_year', $idYear)
+                    ->get()
+                    ->getResultArray();
+    }
+
 }

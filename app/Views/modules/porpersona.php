@@ -27,7 +27,7 @@
                     <h3 class="card-title">Lista de Porpersonas</h3>
 
                     <div class="card-tools">
-                        <form method="post" id="busqueda" class="form">
+                        <form method="post" id="form_busqueda" class="form">
 
                             <div class="row">
 
@@ -48,9 +48,14 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="fornombre">AÑO <span class="text-danger">*</span></label>
-                                        <div class="input-group input-group-sm">
-                                            <input type="number" name="year" class="form-control form-control-sm" id="fornombre" placeholder="Año">
-                                        </div>
+                                        <select class="form-control form-control-sm" name="id_year" id="fopersonal">
+                                            <option selected disabled>Seleccionar...</option>
+                                            <?php
+                                            foreach ($years as $item) {
+                                                echo '<option value="' . $item['id_year'] . '">' . $item['nombre_year'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
