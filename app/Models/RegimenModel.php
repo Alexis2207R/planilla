@@ -47,4 +47,12 @@ class RegimenModel extends Model
             ->getResultArray();
     }
 
+    public function mdListarRegimenes()
+    {
+        return $this->where('estado_regimen', 1)
+            ->orWhere('estado_regimen', 2)
+            ->get()
+            ->getResultArray();
+    }
+
 }
