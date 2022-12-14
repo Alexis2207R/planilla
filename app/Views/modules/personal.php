@@ -119,43 +119,6 @@
 
                     <div class="row">
 
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="fordepartamento">DEPARTAMENTO <span class="text-danger">*</span></label>
-                                <div class="input-group input-group-sm">
-                                    <input type="text" name="ubicacion_dpt" class="form-control form-control-sm" id="fordepartamento" placeholder="Departamento">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="forprovincia">PROVINCIA <span class="text-danger">*</span></label>
-                                <div class="input-group input-group-sm">
-                                    <input type="text" name="ubicacion_prov" class="form-control form-control-sm" id="forprovincia" placeholder="Provincia">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="fordistrito">DISTRITO <span class="text-danger">*</span></label>
-                                <input type="text" name="ubicacion_dist" class="form-control form-control-sm" id="fordistrito" placeholder="Distrito">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="fordireccion">DIRECCIÓN <span class="text-danger">*</span></label>
-                                <input type="text" name="direccion_personal" class="form-control form-control-sm" id="fordireccion" placeholder="Dirección">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-
                         <div class="col-lg-8">
                             <div class="form-group">
                                 <label for="forcuenta">NÚMERO CUENTA <span class="text-danger">*</span></label>
