@@ -62,7 +62,7 @@
 
 <!-- Modal Pago -->
 <div class="modal fade" id="modal-pago">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Formulario Pago</h5>
@@ -74,10 +74,10 @@
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label>PERSONAL <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="id_personal">
+                                <select class="form-control form-control-sm select2" name="id_personal">
                                     <option selected disabled>Seleccionar...</option>
                                     <?php
                                     foreach ($personales as $item) {
@@ -88,10 +88,10 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label>PLANILLA <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="id_planilla">
+                                <select class="form-control form-control-sm select2" name="id_planilla">
                                     <option selected disabled>Seleccionar...</option>
                                     <?php
                                     foreach ($planillas as $item) {
@@ -102,10 +102,10 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label>MES <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" name="id_mes">
+                                <select class="form-control form-control-sm select2" name="id_mes">
                                     <option selected disabled>Seleccionar...</option>
                                     <?php
                                     foreach ($meses as $item) {
@@ -116,9 +116,92 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-8">
+                            <label for="id_bonificacion">BONIFICACIONES</label>
+                            <select class="form-control form-control-sm select2" name="id_bonificacion" id="id_bonificacion">
+                                <option selected disabled>Seleccionar...</option>
+                                <?php
+                                foreach ($bonificaciones as $item) {
+                                    echo '<option value="' . $item['id_bonificacion'] . '">' . $item['nombre_bonificacion'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="cantidad_bonificacion">CANTIDAD<span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" name="cantidad_bonificacion" step="0.01" class="form-control form-control-sm" id="cantidad_bonificacion" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="fornombre"><span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <button type="button" id="btnAddBonificacion" class="btn btn-primary btn-sm form-control form-contro-sm"> Agregar</button>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
+
+                    <div class="container" id="container_bonificaciones">
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-lg-8">
+                            <label for="">DESCUENTOS</label>
+                            <select class="form-control form-control-sm select2" name="id_descuento" id="id_descuento">
+                                <option selected disabled>Seleccionar...</option>
+                                <?php
+                                foreach ($descuentos as $item) {
+                                    echo '<option value="' . $item['id_descuento'] . '">' . $item['nombre_descuento'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="fornombre">CANTIDAD<span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" name="cantidad_descuento" id="cantidad_descuento"  step="0.01" class="form-control form-control-sm" id="fornombre" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="fornombre"><span class="text-danger">*</span></label>
+                                <div class="input-group input-group-sm">
+                                    <button type="button" id="btnAddDescuento" class="btn btn-primary btn-sm form-control form-contro-sm"> Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="container" id="container_descuentos">
+
+                    </div>
+
+                    <hr />
+
+
                 </div>
+
+
                 <div class="modal-footer justify-content-center">
                     <button type="submit" class="btn btn-success btn-sm">Guardar</button>
                     <button id="btnCancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
@@ -137,5 +220,9 @@
 <script>
     $(document).ready(function() {
         pagos();
+        $('.select2').select2({
+            placeholder: 'Seleccionar...',
+            dropdownParent: $("#modal-pago")
+        });
     })
 </script>

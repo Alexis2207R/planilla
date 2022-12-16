@@ -14,7 +14,7 @@ class RegimenModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre_regimen', 'fecha_creacion', 'estado_regimen'];
+    protected $allowedFields    = ['nombre_regimen', 'creacion_regimen', 'estado_regimen'];
 
     // Dates
     protected $useTimestamps = false;

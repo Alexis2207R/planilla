@@ -10,7 +10,7 @@ const regimenes = () => {
     columns: [
       { data: 'id_regimen'          },
       { data: 'nombre_regimen'             },
-      { data: 'fecha_creacion'    },
+      { data: 'creacion_regimen'    },
       { data: 'estado_regimen'      },
       { data: 'acciones'              }
     ],

@@ -8,16 +8,24 @@ use App\Models\MesModel;
 use App\Models\PagoModel;
 use App\Models\PersonalModel;
 use App\Models\PlanillaModel;
+use App\Models\BonificacionModel;
+use App\Models\DescuentoModel;
+use App\Models\PagoBonificacionModel;
+use App\Models\PagoDescuentoModel;
 
 class Pagos extends Controller
 {
     public function __construct()
     {
         $this->validation =  \Config\Services::validation();
-        $this->modPago     = new PagoModel();
-        $this->modPersonal = new PersonalModel();
-        $this->modPlanilla = new PlanillaModel();
-        $this->modMes      = new MesModel();
+        $this->modPago             = new PagoModel();
+        $this->modPersonal         = new PersonalModel();
+        $this->modPlanilla         = new PlanillaModel();
+        $this->modMes              = new MesModel();
+        $this->modBonificacion     = new BonificacionModel();
+        $this->modDescuento        = new DescuentoModel();
+        $this->modPagoBonificacion = new PagoBonificacionModel();
+        $this->modPagoDescuento    = new PagoDescuentoModel();
     }
 
     public function index()
@@ -25,10 +33,14 @@ class Pagos extends Controller
         $personales = $this->modPersonal->getAllActive();
         $planillas = $this->modPlanilla->getAllActive();
         $meses = $this->modMes->getAllActive();
+        $bonificaciones = $this->modBonificacion->getAllActive();
+        $descuentos = $this->modDescuento->getAllActive();
         $data = [
-            'personales' => $personales,
-            'planillas'  => $planillas,
-            'meses'      => $meses
+            'personales'     => $personales,
+            'planillas'      => $planillas,
+            'meses'          => $meses,
+            'bonificaciones' => $bonificaciones,
+            'descuentos'     => $descuentos
         ];
         return $this->ViewData('modules/pago', $data);
     }
@@ -86,21 +98,35 @@ class Pagos extends Controller
         ]);
         $this->validation->withRequest($this->request)->run();
         if (!$this->validation->getErrors()) {
+            $descuentos      = explode(',', $_POST['descuentos']);
+            $cdescuentos     = explode(',', $_POST['cdescuentos']);
+            $bonificaciones  = explode(',', $_POST['bonificaciones']);
+            $cbonificaciones = explode(',', $_POST['cbonificaciones']);
+
             if (isset($_POST['id_pago']) && !empty($_POST['id_pago'])) {
                 $datos = [
-                    'id_pago'        => $_POST['id_pago'],
-                    'id_personal'    => $_POST['id_personal'],
-                    'id_planilla'    => $_POST['id_planilla'],
-                    'id_mes'         => $_POST['id_mes'],
+                    'id_pago'         => $_POST['id_pago'],
+                    'id_personal'     => $_POST['id_personal'],
+                    'id_planilla'     => $_POST['id_planilla'],
+                    'id_mes'          => $_POST['id_mes'],
+                    'descuentos'      => $descuentos,
+                    'cdescuentos'     => $cdescuentos,
+                    'bonificaciones'  => $bonificaciones,
+                    'cbonificaciones' => $cbonificaciones
+
                 ];
                 $update = $this->update($datos);
                 return $update;
             } else {
                 $datos = [
-                    'id_personal'  => $_POST['id_personal'],
-                    'id_planilla'  => $_POST['id_planilla'],
-                    'id_mes'       => $_POST['id_mes'],
-                    'fecha_creacion' => date('Y-m-d H:i:s')
+                    'id_personal'     => $_POST['id_personal'],
+                    'id_planilla'     => $_POST['id_planilla'],
+                    'id_mes'          => $_POST['id_mes'],
+                    'fecha_creacion'  => date('Y-m-d H:i:s'),
+                    'descuentos'      => $descuentos,
+                    'cdescuentos'     => $cdescuentos,
+                    'bonificaciones'  => $bonificaciones,
+                    'cbonificaciones' => $cbonificaciones
                 ];
                 $insert = $this->register($datos);
                 return $insert;
@@ -129,7 +155,17 @@ class Pagos extends Controller
         if ($this->request->getMethod() != 'post') {
             return redirect()->to(base_url());
         }
+        $descuentos      = $datos['descuentos'];
+        $cdescuentos     = $datos['cdescuentos'];
+        $bonificaciones  = $datos['bonificaciones'];
+        $cbonificaciones = $datos['cbonificaciones'];
+        unset($datos['descuentos']);
+        unset($datos['cdescuentos']);
+        unset($datos['bonificaciones']);
+        unset($datos['cbonificaciones']);
         $insert = $this->modPago->insert($datos);
+        $this->insertPagoBonificacion($insert, $bonificaciones, $cbonificaciones);
+        $this->insertPagoDescuento($insert, $descuentos, $cdescuentos);
         if (!$insert) {
             return json_encode(['status' => 400, 'insert' => $insert, 'msg' => 'Hubo un error al intentar registrar la pago']);
         }
@@ -146,6 +182,35 @@ class Pagos extends Controller
             return json_encode(['status' => 400, 'update' => $update, 'msg' => 'Hubo un error al intentar actaulizar la pago']);
         }
         return json_encode(['status' => 200, 'update' => $update, 'msg' => 'Pago actualizado con exito']);
+    }
+
+    private function insertPagoBonificacion($idPago, $bonificaciones, $cbonificaciones)
+    {
+        for ($i = 0; $i < count($bonificaciones); $i++)
+        {
+            $id       = $bonificaciones[$i];
+            $cantidad = $cbonificaciones[$i];
+            $data = [
+                'id_pago'                    => $idPago,
+                'id_bonificacion'            => $id,
+                'cantidad_pago_bonificacion' => $cantidad
+            ];
+            $this->modPagoBonificacion->insert($data);
+        }
+    }
+
+    private function insertPagoDescuento($idPago, $descuentos, $cdescuentos)
+    {
+        for ($i = 0; $i < count($descuentos); $i++) {
+            $id       = $descuentos[$i];
+            $cantidad = $cdescuentos[$i];
+            $data = [
+                'id_pago'                 => $idPago,
+                'id_descuento'            => $id,
+                'cantidad_pago_descuento' => $cantidad
+            ];
+            $this->modPagoDescuento->insert($data);
+        }
     }
 
 }

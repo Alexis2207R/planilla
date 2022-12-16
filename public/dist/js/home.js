@@ -598,6 +598,16 @@ const usuarios = () => {
             }
         })
     })
+
+    // Add Descuento
+    $(document).on('click', '#btnNew', function () {
+        $('#modal-usuario').modal('show');
+    });
+
+  // Esconder el modal
+  $('#btnCancel, .close').on('click', function () {
+    $('#modal-usuario').modal('hide');
+  })
 }
 
 const renumeracion = () => {

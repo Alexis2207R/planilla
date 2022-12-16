@@ -24,6 +24,10 @@
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <!-- jQuery -->
     <script src="<?= base_url() ?>/public/plugins/jquery/jquery.min.js"></script>
 </head>

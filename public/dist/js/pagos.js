@@ -150,6 +150,12 @@ const pagos = () => {
     $.validator.setDefaults({
       submitHandler: function () {
         var datos = new FormData($(form_pago)[0]);
+        console.log(datos);
+        datos.append('bonificaciones', datos.getAll('bonificacion_id').join());
+        datos.append('cbonificaciones', datos.getAll('bonificacion_cantidad').join());
+        datos.append('descuentos', datos.getAll('descuento_id').join());
+        datos.append('cdescuentos', datos.getAll('descuento_cantidad').join());
+        console.log(datos);
         $.ajax({
           url: './pagos/form',
           type: "POST",
@@ -245,9 +251,64 @@ const pagos = () => {
     })
   });
 
+  $(document).on('click', '#btnAddBonificacion', () => {
+    let id = $('#id_bonificacion').val();
+    let id_text = $('#id_bonificacion option:selected').text();
+    let cantidad = $('#cantidad_bonificacion').val();
+
+    let container = $('#container_bonificaciones');
+    let newBon = `<div class="row mt-1" id="row">
+                            <div class="col-4">
+                                <input type="text" name="bonificacion_${id}" value="${id_text}" placeholder="${id_text}" readonly />
+                                <input type="hidden" name="bonificacion_id" value="${id}" placeholder="${id_text}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <input type="number" step="0.01" name="bonificacion_cantidad" value="${cantidad}" placeholder="${cantidad}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-sm btn-danger" type="button" id="deleteBon"> ELIMINAR </button>
+                            </div>
+                    </div>`;
+    container.append(newBon);
+
+    $('#id_bonificacion').val('').trigger('change');
+    $('#cantidad_bonificacion').val('');
+  });
+
+
+  $(document).on('click', '#btnAddDescuento', () => {
+    let id = $('#id_descuento').val();
+    let id_text = $('#id_descuento option:selected').text();
+    let cantidad = $('#cantidad_descuento').val();
+
+    let container = $('#container_descuentos');
+    let newBon = `<div class="row mt-1" id="row">
+                            <div class="col-4">
+                                <input type="text" name="descuento_${id}" value="${id_text}" placeholder="${id_text}" readonly />
+                                <input type="hidden" name="descuento_id" value="${id}" placeholder="${id_text}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <input type="number" step="0.01" name="descuento_cantidad" value="${cantidad}" placeholder="${cantidad}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-sm btn-danger" type="button" id="deleteBon"> ELIMINAR </button>
+                            </div>
+                    </div>`;
+    container.append(newBon);
+
+    $('#id_descuento').val('').trigger('change');
+    $('#cantidad_descuento').val('');
+  });
+
+  $(document).on('click', '#deleteBon', function () {
+    $(this).parents("#row").remove();
+  })
+
   // Esconder el modal
   $('#btnCancel, .close, #btnNew').on('click', function () {
     $('#modal-pago').modal('hide');
+    $('#container_bonificaciones').empty();
+    $('#container_descuentos').empty();
   })
 
 };
