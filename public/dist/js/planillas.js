@@ -40,7 +40,6 @@ const planillas = () => {
                                     <div class="btn-group" role="group" aria-label="First group">
                                         <button type="button" id="edit_planilla"   item="${full.id_planilla}" class="btn btn-xs btn-primary   btn-icon"><i class="icon-nd fas fa-edit"></i></button>
                                         <button type="button" id="delete_planilla" item="${full.id_planilla}" class="btn btn-xs btn-danger    btn-icon"><i class="icon-nd fas fa-trash"></i></button>
-                                        <button type="button" id="view_planilla"   item="${full.id_planilla}" class="btn btn-xs btn-secondary btn-icon"><i class="icon-nd fas fa-eye"></i></button>
                                         <button type="button" status="${full.estado_planilla}" id="ban_planilla" item="${full.id_planilla}" class="btn btn-xs btn-${btn_accion.color} btn-icon"><i class="icon-nd ${btn_accion.active}"></i></button>
                                         </div>
                                 </div>
@@ -246,18 +245,18 @@ const planillas = () => {
         $('#modal-planilla [name=id_tipo_planilla]').val(planilla.id_tipo_planilla);
         $('#modal-planilla [name=id_year]').val(planilla.id_year);
 
-        resetDualLists();
+        // resetDualLists();
 
-        bonificaciones.forEach((item) => {
-          $('#bonificaciones option[value="' + item.id_bonificacion + '"]').prop('selected', true);
-        });
+        // bonificaciones.forEach((item) => {
+        //   $('#bonificaciones option[value="' + item.id_bonificacion + '"]').prop('selected', true);
+        // });
 
-        descuentos.forEach((item) => {
-          $('#descuentos option[value="' + item.id_descuento + '"]').prop('selected', true);
-        });
+        // descuentos.forEach((item) => {
+        //   $('#descuentos option[value="' + item.id_descuento + '"]').prop('selected', true);
+        // });
 
-        $('#bonificaciones').bootstrapDualListbox('refresh', true);
-        $('#descuentos').bootstrapDualListbox('refresh', true);
+        // $('#bonificaciones').bootstrapDualListbox('refresh', true);
+        // $('#descuentos').bootstrapDualListbox('refresh', true);
 
         $('#modal-planilla').modal('show');
       },

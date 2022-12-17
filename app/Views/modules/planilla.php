@@ -110,7 +110,7 @@
 
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label>BONIFICACIONES</label>
@@ -123,7 +123,6 @@
                                     ?>
                                 </select>
                             </div>
-                            <!-- /.form-group -->
                         </div>
                     </div>
 
@@ -140,9 +139,8 @@
                                     ?>
                                 </select>
                             </div>
-                            <!-- /.form-group -->
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -207,7 +205,7 @@
 
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label>BONIFICACIONES</label>
@@ -219,7 +217,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.form-group -->
                         </div>
                     </div>
 
@@ -235,7 +232,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.form-group -->
                         </div>
                     </div>
 
@@ -266,7 +262,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="modal-footer justify-content-center">
