@@ -34,7 +34,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="forpersonal">PERSONAL <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm" name="id_personal" id="fopersonal">
+                                        <select class="form-control form-control-sm select2" name="id_personal" id="forpersonal">
                                             <option selected disabled>Seleccionar...</option>
                                             <?php
                                             foreach ($personales as $item) {
@@ -47,8 +47,8 @@
 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="fornombre">AÑO <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm" name="id_year" id="fopersonal">
+                                        <label for="foryear">AÑO <span class="text-danger">*</span></label>
+                                        <select class="form-control form-control-sm select2" name="id_year" id="foryear">
                                             <option selected disabled>Seleccionar...</option>
                                             <?php
                                             foreach ($years as $item) {
@@ -113,5 +113,8 @@
 <script>
     $(document).ready(function() {
         porpersonas();
+        $('.select2').select2({
+            placeholder: 'Seleccionar...'
+        });
     })
 </script>

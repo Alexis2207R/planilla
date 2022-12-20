@@ -40,19 +40,19 @@ class PlanillaBonificacionModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function mdVerDePlanilla($id)
+    public function mdVerDePago($id)
     {
-        return $this->join('bonificacion b', 'b.id_bonificacion = planilla_bonificacion.id_bonificacion')
-                    ->where('planilla_bonificacion.id_planilla', $id)
-                    ->where('planilla_bonificacion.estado_planilla_bonificacion', 1)
+        return $this->join('bonificacion b', 'b.id_bonificacion = pago_bonificacion.id_bonificacion')
+                    ->where('pago_bonificacion.id_pago', $id)
+                    ->where('pago_bonificacion.estado_pago_bonificacion', 1)
                     ->get()
                     ->getResultArray();
     }
 
-    public function banFromPlanilla($id)
+    public function banFromPago($id)
     {
-        return $this->where('id_planilla', $id)
-                    ->set(['estado_planilla_bonificacion' => 0])
+        return $this->where('id_pago', $id)
+                    ->set(['estado_pago_bonificacion' => 0])
                     ->update();
     }
 }

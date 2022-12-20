@@ -102,9 +102,9 @@ class Planillas extends Controller
                     'numero_planilla'   => strtoupper($_POST['numero_planilla']),
                     'id_tipo_planilla'  => $_POST['id_tipo_planilla'],
                     'id_year'           => $_POST['id_year'],
-                    'total_ingreso'     => $totalIngreso,
-                    'total_egreso'      => $totalEgreso,
-                    'total_neto'        => abs($totalIngreso - $totalEgreso),
+                    // 'total_ingreso'     => $totalIngreso,
+                    // 'total_egreso'      => $totalEgreso,
+                    // 'total_neto'        => abs($totalIngreso - $totalEgreso),
                     'descuentos'        => $descuentos,
                     'bonificaciones'    => $bonificaciones
                 ];

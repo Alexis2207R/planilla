@@ -14,7 +14,7 @@ class PagoBonificacionModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pago', 'id_bonificacion', 'cantidad_pago_bonificacion'];
+    protected $allowedFields    = ['id_pago', 'id_bonificacion', 'cantidad_pago_bonificacion', 'estado_pago_bonificacion'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,5 +39,21 @@ class PagoBonificacionModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function mdVerDePago($id)
+    {
+        return $this->join('bonificacion b', 'b.id_bonificacion = pago_bonificacion.id_bonificacion')
+                    ->where('pago_bonificacion.id_pago', $id)
+                    ->where('pago_bonificacion.estado_pago_bonificacion', 1)
+                    ->get()
+                    ->getResultArray();
+    }
+
+    public function banFromPago($id)
+    {
+        return $this->where('id_pago', $id)
+                    ->set(['estado_pago_bonificacion' => 0])
+                    ->update();
+    }
 
 }

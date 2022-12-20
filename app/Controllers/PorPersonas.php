@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 use App\Models\BonificacionModel;
 use App\Models\DescuentoModel;
+use App\Models\PagoBonificacionModel;
+use App\Models\PagoDescuentoModel;
 use App\Models\PagoModel;
 use App\Models\PersonalModel;
-use App\Models\PlanillaBonificacionModel;
-use App\Models\PlanillaDescuentoModel;
 use App\Models\YearModel;
 use CodeIgniter\Controller;
 
@@ -15,13 +15,13 @@ class PorPersonas extends Controller
 {
     public function __construct()
     {
-        $this->modPersonal = new PersonalModel();
-        $this->modBonificacion = new BonificacionModel();
-        $this->modDescuento = new DescuentoModel();
-        $this->modYear = new YearModel();
-        $this->modPago = new PagoModel();
-        $this->modPlanillaDescuento = new PlanillaDescuentoModel();
-        $this->modPlanillaBonificacion = new PlanillaBonificacionModel();
+        $this->modPersonal         = new PersonalModel();
+        $this->modBonificacion     = new BonificacionModel();
+        $this->modDescuento        = new DescuentoModel();
+        $this->modYear             = new YearModel();
+        $this->modPago             = new PagoModel();
+        $this->modPagoDescuento    = new PagoDescuentoModel();
+        $this->modPagoBonificacion = new PagoBonificacionModel();
     }
 
     public function index()
@@ -55,7 +55,7 @@ class PorPersonas extends Controller
                     'numero_planilla' => $data['numero_planilla'],
                     'dias'            => $data['dias'],
                     'nombre_year'     => $data['nombre_year'],
-                    'id_planilla'     => $data['id_planilla'],
+                    'id_pago'         => $data['id_pago'],
                     'total_egreso'    => $data['total_egreso'],
                     'total_ingreso'   => $data['total_ingreso'],
                     'total_neto'      => $data['total_neto'],
@@ -66,13 +66,13 @@ class PorPersonas extends Controller
                 foreach ($descuentos as $descuento)
                     $realData[$descuento['nombre_descuento']] = '';
 
-                $actualDescuentos = $this->modPlanillaDescuento->mdVerDePlanilla($data['id_planilla']);
+                $actualDescuentos = $this->modPagoDescuento->mdVerDePago($data['id_pago']);
                 foreach ($actualDescuentos as $actual)
-                    $realData[$actual['nombre_descuento']] = $actual['cantidad_descuento'];
+                    $realData[$actual['nombre_descuento']] = $actual['cantidad_pago_descuento'];
 
-                $actualBonificaciones = $this->modPlanillaBonificacion->mdVerDePlanilla($data['id_planilla']);
+                $actualBonificaciones = $this->modPagoBonificacion->mdVerDePago($data['id_pago']);
                 foreach ($actualBonificaciones as $actual)
-                    $realData[$actual['nombre_bonificacion']] = $actual['cantidad_bonificacion'];
+                    $realData[$actual['nombre_bonificacion']] = $actual['cantidad_pago_bonificacion'];
 
                 array_push($reporte, $realData);
             }

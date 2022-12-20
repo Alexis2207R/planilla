@@ -176,7 +176,9 @@ const pagos = () => {
               resetform();
               table_pagos.ajax.reload();
               $('#modal-pago').modal('hide');
-            } else {
+              $('#container_bonificaciones').empty();
+              $('#container_descuentos').empty();
+          } else {
               Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
             }
           },
@@ -236,12 +238,27 @@ const pagos = () => {
       dataType: "json",
       success: function (response) {
         response = response.edit;
+        let pago = response.pago;
+        let bonificaciones = response.bonificaciones;
+        let descuentos = response.descuentos;
+        console.log(response);
         if (response) {
-          $("#modal-pago .form").append(`<input class="temp" type="hidden" value="${response.id_pago}" name="id_pago">`)
-          $('#modal-pago [name=nombre_pago]').val(response.nombre_pago);
-          $('#modal-pago [name=id_tipo_pago]').val(response.id_tipo_pago);
-          $('#modal-pago [name=cantidad_pago]').val(response.cantidad_pago);
+          $("#modal-pago .form").append(`<input class="temp" type="hidden" value="${pago.id_pago}" name="id_pago">`)
+          $('#modal-pago [name=id_personal]').val(pago.id_personal);
+          $('#modal-pago [name=id_planilla]').val(pago.id_planilla);
+          $('#modal-pago [name=id_mes]').val(pago.id_mes);
 
+          let container = $('#container_bonificaciones');
+          bonificaciones.forEach((e)=> {
+            container.append(newDetail('bonificacion', e.id_bonificacion, e.nombre_bonificacion, Number(e.cantidad_pago_bonificacion).toFixed(2)));
+          });
+
+          container = $('#container_descuentos');
+          descuentos.forEach((e)=> {
+            container.append(newDetail('descuento', e.id_descuento, e.nombre_descuento, Number(e.cantidad_pago_descuento).toFixed(2)))
+          });
+
+          $('.select2').trigger('change');
           $('#modal-pago').modal('show');
         }
       },
@@ -255,21 +272,9 @@ const pagos = () => {
     let id = $('#id_bonificacion').val();
     let id_text = $('#id_bonificacion option:selected').text();
     let cantidad = $('#cantidad_bonificacion').val();
-
     let container = $('#container_bonificaciones');
-    let newBon = `<div class="row mt-1" id="row">
-                            <div class="col-4">
-                                <input type="text" name="bonificacion_${id}" value="${id_text}" placeholder="${id_text}" readonly />
-                                <input type="hidden" name="bonificacion_id" value="${id}" placeholder="${id_text}" readonly />
-                            </div>
-                            <div class="col-4">
-                                <input type="number" step="0.01" name="bonificacion_cantidad" value="${cantidad}" placeholder="${cantidad}" readonly />
-                            </div>
-                            <div class="col-4">
-                                <button class="btn btn-sm btn-danger" type="button" id="deleteBon"> ELIMINAR </button>
-                            </div>
-                    </div>`;
-    container.append(newBon);
+
+    container.append(newDetail('bonificacion', id, id_text, cantidad));
 
     $('#id_bonificacion').val('').trigger('change');
     $('#cantidad_bonificacion').val('');
@@ -280,21 +285,9 @@ const pagos = () => {
     let id = $('#id_descuento').val();
     let id_text = $('#id_descuento option:selected').text();
     let cantidad = $('#cantidad_descuento').val();
-
     let container = $('#container_descuentos');
-    let newBon = `<div class="row mt-1" id="row">
-                            <div class="col-4">
-                                <input type="text" name="descuento_${id}" value="${id_text}" placeholder="${id_text}" readonly />
-                                <input type="hidden" name="descuento_id" value="${id}" placeholder="${id_text}" readonly />
-                            </div>
-                            <div class="col-4">
-                                <input type="number" step="0.01" name="descuento_cantidad" value="${cantidad}" placeholder="${cantidad}" readonly />
-                            </div>
-                            <div class="col-4">
-                                <button class="btn btn-sm btn-danger" type="button" id="deleteBon"> ELIMINAR </button>
-                            </div>
-                    </div>`;
-    container.append(newBon);
+
+    container.append(newDetail('descuento', id, id_text, cantidad));
 
     $('#id_descuento').val('').trigger('change');
     $('#cantidad_descuento').val('');
@@ -304,11 +297,29 @@ const pagos = () => {
     $(this).parents("#row").remove();
   })
 
+  // Realiza un nuevo registro para bonificaciones y descuentos
+  // @param type - 'bonificacion' | 'descuento'
+  function newDetail(type, id, id_text, cantidad) {
+    return `<div class="row mt-1" id="row">
+                            <div class="col-4">
+                                <input type="text" name="${type}_${id}" value="${id_text}" placeholder="${id_text}" readonly />
+                                <input type="hidden" name="${type}_id" value="${id}" placeholder="${id_text}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <input type="number" step="0.01" name="${type}_cantidad" value="${cantidad}" placeholder="${cantidad}" readonly />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-sm btn-danger" type="button" id="deleteBon"> ELIMINAR </button>
+                            </div>
+                    </div>`;
+  }
+
   // Esconder el modal
   $('#btnCancel, .close, #btnNew').on('click', function () {
     $('#modal-pago').modal('hide');
     $('#container_bonificaciones').empty();
     $('#container_descuentos').empty();
+    $('.select2').val('').trigger('change');
   })
 
 };

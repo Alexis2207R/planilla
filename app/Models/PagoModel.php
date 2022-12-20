@@ -14,7 +14,8 @@ class PagoModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_personal', 'id_planilla', 'id_mes', 'fecha_creacion', 'estado_pago'];
+    protected $allowedFields    = ['id_personal', 'id_planilla', 'id_mes', 'total_ingreso',
+                                   'total_egreso', 'total_neto', 'fecha_creacion', 'estado_pago'];
 
     // Dates
     protected $useTimestamps = false;

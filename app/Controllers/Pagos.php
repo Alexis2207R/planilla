@@ -102,6 +102,8 @@ class Pagos extends Controller
             $cdescuentos     = explode(',', $_POST['cdescuentos']);
             $bonificaciones  = explode(',', $_POST['bonificaciones']);
             $cbonificaciones = explode(',', $_POST['cbonificaciones']);
+            $totalIngreso = $this->getTotalIngreso($cbonificaciones);
+            $totalEgreso  = $this->getTotalEgreso($cdescuentos);
 
             if (isset($_POST['id_pago']) && !empty($_POST['id_pago'])) {
                 $datos = [
@@ -109,6 +111,9 @@ class Pagos extends Controller
                     'id_personal'     => $_POST['id_personal'],
                     'id_planilla'     => $_POST['id_planilla'],
                     'id_mes'          => $_POST['id_mes'],
+                    'total_ingreso'   => $totalIngreso,
+                    'total_egreso'    => $totalEgreso,
+                    'total_neto'      => $totalIngreso - $totalEgreso,
                     'descuentos'      => $descuentos,
                     'cdescuentos'     => $cdescuentos,
                     'bonificaciones'  => $bonificaciones,
@@ -122,6 +127,9 @@ class Pagos extends Controller
                     'id_personal'     => $_POST['id_personal'],
                     'id_planilla'     => $_POST['id_planilla'],
                     'id_mes'          => $_POST['id_mes'],
+                    'total_ingreso'   => $totalIngreso,
+                    'total_egreso'    => $totalEgreso,
+                    'total_neto'      => $totalIngreso - $totalEgreso,
                     'fecha_creacion'  => date('Y-m-d H:i:s'),
                     'descuentos'      => $descuentos,
                     'cdescuentos'     => $cdescuentos,
@@ -141,10 +149,17 @@ class Pagos extends Controller
     {
         if ($this->request->isAjax()) {
             $pago = $this->modPago->find($_POST['item']);
+            $bonificaciones = $this->modPagoBonificacion->mdVerDePago($_POST['item']);
+            $descuentos = $this->modPagoDescuento->mdVerDePago($_POST['item']);
+            $data = [
+                'pago'           => $pago,
+                'bonificaciones' => $bonificaciones,
+                'descuentos'     => $descuentos
+            ];
             if (!$pago) {
                 return json_encode(['status' => 400, 'edit' => $pago, 'msg' => 'Hubo un error al intentar obtener la pago']);
             }
-            return json_encode(['status' => 200, 'edit' => $pago, 'msg' => 'Pago eliminado con exito']);
+            return json_encode(['status' => 200, 'edit' => $data, 'msg' => 'Pago eliminado con exito']);
         } else {
             return redirect()->to(base_url());
         }
@@ -177,11 +192,44 @@ class Pagos extends Controller
         if ($this->request->getMethod() != 'post') {
             return redirect()->to(base_url());
         }
+        $descuentos      = $datos['descuentos'];
+        $cdescuentos     = $datos['cdescuentos'];
+        $bonificaciones  = $datos['bonificaciones'];
+        $cbonificaciones = $datos['cbonificaciones'];
+        unset($datos['descuentos']);
+        unset($datos['cdescuentos']);
+        unset($datos['bonificaciones']);
+        unset($datos['cbonificaciones']);
+
         $update = $this->modPago->update($_POST['id_pago'], $datos);
+
+        // Para editar las relaciones entre pago y descuentos - bonificaciones, elimino sus anteriores :D
+        $this->banPagoDescuento($_POST['id_pago']);
+        $this->banPagoBonificacion($_POST['id_pago']);
+        $this->insertPagoBonificacion($_POST['id_pago'], $bonificaciones, $cbonificaciones);
+        $this->insertPagoDescuento($_POST['id_pago'], $descuentos, $cdescuentos);
         if (!$update) {
             return json_encode(['status' => 400, 'update' => $update, 'msg' => 'Hubo un error al intentar actaulizar la pago']);
         }
         return json_encode(['status' => 200, 'update' => $update, 'msg' => 'Pago actualizado con exito']);
+    }
+
+    private function getTotalIngreso($bonificaciones)
+    {
+        $ingreso = 0.0;
+        foreach ($bonificaciones as $bonificacion) {
+            $ingreso += $bonificacion;
+        }
+        return $ingreso;
+    }
+
+    private function getTotalEgreso($descuentos)
+    {
+        $egreso = 0.0;
+        foreach ($descuentos as $descuento) {
+            $egreso += $descuento;
+        }
+        return $egreso;
     }
 
     private function insertPagoBonificacion($idPago, $bonificaciones, $cbonificaciones)
@@ -212,5 +260,16 @@ class Pagos extends Controller
             $this->modPagoDescuento->insert($data);
         }
     }
+
+    private function banPagoBonificacion($idPago)
+    {
+        $this->modPagoBonificacion->banFromPago($idPago);
+    }
+
+    private function banPagoDescuento($idPago)
+    {
+        $this->modPagoDescuento->banFromPago($idPago);
+    }
+
 
 }

@@ -14,7 +14,7 @@ class PagoDescuentoModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pago', 'id_descuento', 'cantidad_pago_descuento'];
+    protected $allowedFields    = ['id_pago', 'id_descuento', 'cantidad_pago_descuento', 'estado_pago_descuento'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,5 +39,21 @@ class PagoDescuentoModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function mdVerDePago($id)
+    {
+        return $this->join('descuentos b', 'b.id_descuento = pago_descuento.id_descuento')
+                    ->where('pago_descuento.id_pago', $id)
+                    ->where('pago_descuento.estado_pago_descuento', 1)
+                    ->get()
+                    ->getResultArray();
+    }
+
+    public function banFromPago($id)
+    {
+        return $this->where('id_pago', $id)
+                    ->set(['estado_pago_descuento' => 0])
+                    ->update();
+    }
 
 }
