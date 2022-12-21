@@ -34,7 +34,7 @@ class PorPersonas extends Controller
             'personales'     => $personales,
             'bonificaciones' => $bonificaciones,
             'descuentos'     => $descuentos,
-            'years'           => $years
+            'years'          => $years
         ];
         return $this->ViewData('modules/porpersona', $data);
     }
@@ -81,5 +81,24 @@ class PorPersonas extends Controller
         } else {
             return redirect()->to(base_url());
         }
+    }
+
+    public function view_personal()
+    {
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $id_personal = $_POST['id_personal'];
+            $id_year = $_POST['id_year'];
+            $PersonaModel = new PagoModel();
+            $persona = $PersonaModel->mdListarDePersonaPorAnio($id_personal, $id_year);
+            $bonificaciones = $this->modBonificacion->getAllActive();
+            $descuentos = $this->modDescuento->getAllActive();
+            $datos = [
+                'persona' => $persona,
+                'bonificaciones' => $bonificaciones,
+                'descuentos' => $descuentos,
+            ];
+            return view('modules/pdfreporte', $datos);
+        }
+        
     }
 }
