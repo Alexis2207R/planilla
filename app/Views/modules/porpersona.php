@@ -57,21 +57,28 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4">
-                                    <button id="btnSearch" type="button" class="btn btn-primary btn-sm">
-                                        Buscar
-                                    </button>
 
-                                    <button id="btnPdf" type="button" class="btn btn-primary btn-sm">
-                                        PDF
-                                    </button>
-
-                                    <button id="btnExcel" type="button" class="btn btn-primary btn-sm">
-                                        Excel
-                                    </button>
-
-
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="foryear">TIPO <span class="text-danger">*</span></label>
+                                        <select class="form-control form-control-sm select2" name="type_report" id="type_report">
+                                            <option selected disabled>Seleccionar...</option>
+                                            <option value="1">Ver</option>
+                                            <option value="2">Pdf</option>
+                                            <option value="3">Excel</option>
+                                        </select>
+                                    </div>
                                 </div>
+
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="btnSearch"><span class="text-danger"></span></label>
+                                        <button id="btnSearch" type="submit" class="btn btn-primary btn-sm">
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </form>
 
