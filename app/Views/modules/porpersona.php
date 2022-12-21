@@ -18,88 +18,126 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-header">
+                            <h3 class="card-title">Generador de reportes pdf</h3>
+                        </div>
+                        <div class="col-4">
+                        <form action="<?= base_url().'/porPersonas/view_personal'?>" method="POST">
+                            <div class="form-group">
+                                <label for="my-select">PERSONAL</label>
+                                <select id="my-select" class="form-control" name="id_personal">
+                                    <option selected disabled>SELECIONAR...</option>
+                                    <?php foreach ($personales as $item) { ?>
+                                    <option value="<?= $item['id_personal'] ?>"> <?=$item['nombre_personal'] . ' ' . $item['apellido_personal']?></option>
+                                        <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="my-select">AÑO</label>
+                                <select id="my-select" class="form-control" name="id_year">
+                                    <option selected disabled>SELECCIONAR...</option>
+                                    <?php
+                                        foreach ($years as $item) {
+                                            echo '<option value="' . $item['id_year'] . '">' . $item['nombre_year'] . '</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </button>
+                        </form>
+                        </div>
+                            <div class="card-tools">
+                                <form method="post" id="form_busqueda" class="form">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label for="forpersonal">PERSONAL <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-control form-control-sm select2" name="id_personal"
+                                                    id="forpersonal">
+                                                    <option selected disabled>Seleccionar...</option>
+                                                    <?php
+                                                    foreach ($personales as $item) {
+                                                        echo '<option value="' . $item['id_personal'] . '">' . $item['nombre_personal'] . ' ' . $item['apellido_personal'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
 
-        <!-- Default box -->
-        <div class="row justify-content-center">
-            <div class="card col-lg-10">
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Porpersonas</h3>
-
-                    <div class="card-tools">
-                        <form method="post" id="form_busqueda" class="form">
-
-                            <div class="row">
-
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="forpersonal">PERSONAL <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm select2" name="id_personal" id="forpersonal">
-                                            <option selected disabled>Seleccionar...</option>
-                                            <?php
-                                            foreach ($personales as $item) {
-                                                echo '<option value="' . $item['id_personal'] . '">' . $item['nombre_personal'] . ' ' . $item['apellido_personal'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="foryear">AÑO <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm select2" name="id_year" id="foryear">
-                                            <option selected disabled>Seleccionar...</option>
-                                            <?php
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label for="foryear">AÑO <span class="text-danger">*</span></label>
+                                                <select class="form-control form-control-sm select2" name="id_year"
+                                                    id="foryear">
+                                                    <option selected disabled>Seleccionar...</option>
+                                                    <?php
                                             foreach ($years as $item) {
                                                 echo '<option value="' . $item['id_year'] . '">' . $item['nombre_year'] . '</option>';
                                             }
                                             ?>
-                                        </select>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <button id="btnSearch" type="button" class="btn btn-primary btn-sm">
+                                                Buscar
+                                            </button>
+                                        </div>
+
                                     </div>
-                                </div>
 
-                                <div class="col-lg-4">
-                                    <button id="btnSearch" type="button" class="btn btn-primary btn-sm">
-                                        Buscar
-                                    </button>
-                                </div>
-
+                                </form>
                             </div>
-
-                        </form>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">MES
+                                        </th>
+                                        <th>NRO PLANILLA</th>
+                                        <th>DIAS</th>
+                                        <?php
+                                                        foreach ($bonificaciones as $item) {
+                                                            echo '<th>' . $item['nombre_bonificacion']  . '</th>';
+                                                        }
+                                                    ?>
+                                        <th>INGRESO</th>
+                                        <?php
+                                                        foreach ($descuentos as $item) {
+                                                            echo '<th>' . $item['nombre_descuento']  . '</th>';
+                                                        }
+                                                    ?>
+                                        <th>EGRESO</th>
+                                        <th>TOTAL NETO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
-                <div class="card-body p-3">
-                    <table id="tbl_porpersonas" class="table table-hover table-sm">
-                        <thead>
-                            <tr>
-                                <th class="text-center "><small class="font-weight-bold">MES</small></th>
-                                <th><small class="font-weight-bold">NRO PLANILLA</small></th>
-                                <th>DIAS</th>
-                                <?php
-                                foreach ($bonificaciones as $item) {
-                                    echo '<th><small class="font-weight-bold">' . $item['nombre_bonificacion']  . '</small></th>';
-                                }
-                                ?>
-                                <th>INGRESO</th>
-                                <?php
-                                foreach ($descuentos as $item) {
-                                    echo '<th><small class="font-weight-bold">' . $item['nombre_descuento']  . '</small></th>';
-                                }
-                                ?>
-                                <th><small class="font-weight-bold">EGRESO</small></th>
-                                <th><small class="font-weight-bold">TOTAL NETO</small></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
         </div>
-        <!-- /.card -->
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+    <!-- /.card -->
 
     </section>
     <!-- /.content -->
@@ -111,10 +149,19 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        porpersonas();
-        $('.select2').select2({
-            placeholder: 'Seleccionar...'
-        });
-    })
+$(document).ready(function () {
+    porpersonas();
+    $('.select2').select2({
+        placeholder: 'Seleccionar...'
+    });
+})
+
+// $(function() {
+//     $("#example1").DataTable({
+//         "responsive": true,
+//         "lengthChange": false,
+//         "autoWidth": false,
+//         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+//     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+// });
 </script>
