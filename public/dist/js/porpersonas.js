@@ -1,6 +1,7 @@
+
 const porpersonas = () => {
 
-  let table_porpersonas = $('#tbl_porpersonas').DataTable({});
+  let table_porpersonas = $('#example1').DataTable({})
 
   $(document).on('click', '#btnSearch', () => {
     var datos = new FormData($(form_busqueda)[0]);
@@ -59,10 +60,10 @@ const porpersonas = () => {
     ecolumns.push({data: 'total_neto'})
 
     table_porpersonas.destroy();
-    table_porpersonas = $('#tbl_porpersonas').DataTable({
+    table_porpersonas = $('#example1').DataTable({
       data: response.reporte,
       columns: ecolumns
-    });
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   }
 
 };
