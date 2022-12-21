@@ -165,6 +165,27 @@ class Pagos extends Controller
         }
     }
 
+    public function view_pago()
+    {
+        if ($this->request->isAjax()) {
+            $pago = $this->modPago->mdVerPago($_POST['item']);
+            $bonificaciones = $this->modPagoBonificacion->mdVerDePago($_POST['item']);
+            $descuentos = $this->modPagoDescuento->mdVerDePago($_POST['item']);
+            $data = [
+                'pago'           => $pago[0],
+                'bonificaciones' => $bonificaciones,
+                'descuentos'     => $descuentos
+            ];
+            if (!$pago) {
+                return json_encode(['status' => 400, 'edit' => $pago, 'msg' => 'Hubo un error al intentar obtener la pago']);
+            }
+            return json_encode(['status' => 200, 'edit' => $data, 'msg' => 'Pago eliminado con exito']);
+        } else {
+            return redirect()->to(base_url());
+        }
+    }
+
+
     public function register($datos)
     {
         if ($this->request->getMethod() != 'post') {

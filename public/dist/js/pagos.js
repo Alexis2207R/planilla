@@ -14,6 +14,9 @@ const pagos = () => {
       { data: 'numero_planilla' },
       { data: 'nombre_year' },
       { data: 'nombre_mes' },
+      { data: 'total_ingreso' },
+      { data: 'total_egreso' },
+      { data: 'total_neto' },
       { data: 'estado_pago' },
       { data: 'acciones' }
     ],
@@ -22,7 +25,7 @@ const pagos = () => {
 
     columnDefs: [
       {
-        targets: 6,
+        targets: 9,
 
         render: function (data, type, full, meta) {
           if (data == 1) {
@@ -34,7 +37,7 @@ const pagos = () => {
       },
 
       {
-        targets: 7,
+        targets: 10,
 
         render: function (data, type, full, meta) {
           const btn_accion = full.estado == 2 ? { active: 'fas fa-check', color: 'success' } : { active: 'fas fa-ban', color: 'warning' };
@@ -268,6 +271,49 @@ const pagos = () => {
     })
   });
 
+  // View Pago
+  $(document).on('click', '#view_pago', function () {
+    const item = $(this).attr('item');
+    resetform();
+    $.ajax({
+      url: './pagos/view_pago',
+      type: "POST",
+      data: { item },
+      dataType: "json",
+      success: function (response) {
+        response = response.edit;
+        let pago = response.pago;
+        let bonificaciones = response.bonificaciones;
+        let descuentos = response.descuentos;
+        console.log(response);
+        if (response) {
+          $("#modal-view-pago .form").append(`<input class="temp" type="hidden" value="${pago.id_pago}" name="id_pago">`)
+          $('#modal-view-pago [name=id_personal]').val(pago.nombre_personal + ' ' + pago.apellido_personal);
+          $('#modal-view-pago [name=id_planilla]').val(pago.numero_planilla);
+          $('#modal-view-pago [name=id_mes]').val(pago.nombre_mes);
+          $('#modal-view-pago [name=total_ingreso]').val(pago.total_ingreso);
+          $('#modal-view-pago [name=total_egreso]').val(pago.total_egreso);
+          $('#modal-view-pago [name=total_neto]').val(pago.total_neto);
+
+          let container = $('#container_bonificaciones2');
+          bonificaciones.forEach((e) => {
+            container.append(newViewDetail(e.nombre_bonificacion, Number(e.cantidad_pago_bonificacion).toFixed(2)));
+          });
+
+          container = $('#container_descuentos2');
+          descuentos.forEach((e) => {
+            container.append(newViewDetail(e.nombre_descuento, Number(e.cantidad_pago_descuento).toFixed(2)))
+          });
+
+          $('#modal-view-pago').modal('show');
+        }
+      },
+      error: function (err) {
+        Swal.fire('Error 500', `${err.statusText}`, "error");
+      }
+    })
+  });
+
   $(document).on('click', '#btnAddBonificacion', () => {
     let id = $('#id_bonificacion').val();
     let id_text = $('#id_bonificacion option:selected').text();
@@ -314,11 +360,31 @@ const pagos = () => {
                     </div>`;
   }
 
+  function newViewDetail(id_text, cantidad) {
+    return `<div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                      <input type="text" class="form-control form-control-sm" name="" value="${id_text}" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                      <input type="number" class="form-control form-control-sm" step="0.01" name="" value="${cantidad}" readonly>
+                                    </input>
+                                </div>
+                            </div>
+                        </div>`;
+  }
+
   // Esconder el modal
   $('#btnCancel, .close, #btnNew').on('click', function () {
     $('#modal-pago').modal('hide');
+    $('#modal-view-pago').modal('hide');
     $('#container_bonificaciones').empty();
     $('#container_descuentos').empty();
+    $('#container_bonificaciones2').empty();
+    $('#container_descuentos2').empty();
     $('.select2').val('').trigger('change');
   })
 

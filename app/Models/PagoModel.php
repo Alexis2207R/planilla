@@ -86,4 +86,17 @@ class PagoModel extends Model
                     ->getResultArray();
     }
 
+    public function mdVerPago($id)
+    {
+        return $this->join('personal a', 'a.id_personal = pagos.id_personal')
+                    ->join('planilla b', 'b.id_planilla = pagos.id_planilla')
+                    ->join('mes d',      'd.id_mes = pagos.id_mes')
+                    ->join('ano  e',     'e.id_year = b.id_year')
+                    ->where('pagos.id_pago', $id)
+                    ->where('pagos.estado_pago', 1)
+                    ->Orwhere('pagos.estado_pago', 2)
+                    ->get()
+                    ->getResultArray();
+    }
+
 }

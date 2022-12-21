@@ -42,6 +42,9 @@
                                 <th>PLANILLA</th>
                                 <th>AÑO</th>
                                 <th>MES</th>
+                                <th>INGRESO</th>
+                                <th>EGRESO</th>
+                                <th>NETO</th>
                                 <th class="text-center">ESTADO</th>
                                 <th class="text-center">ACCIONES</th>
                             </tr>
@@ -176,7 +179,7 @@
                             <div class="form-group">
                                 <label for="fornombre">CANTIDAD<span class="text-danger">*</span></label>
                                 <div class="input-group input-group-sm">
-                                    <input type="number" name="cantidad_descuento" id="cantidad_descuento"  step="0.01" class="form-control form-control-sm" id="fornombre" placeholder="Cantidad">
+                                    <input type="number" name="cantidad_descuento" id="cantidad_descuento" step="0.01" class="form-control form-control-sm" id="fornombre" placeholder="Cantidad">
                                 </div>
                             </div>
                         </div>
@@ -198,6 +201,119 @@
 
                     <hr />
 
+                </div>
+
+
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                    <button id="btnCancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+
+<!-- Modal View Pago -->
+<div class="modal fade" id="modal-view-pago">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Formulario Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form" id="form_pago" method="post">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>PERSONAL <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" name="id_personal" readonly> </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>PLANILLA <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" name="id_planilla" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>MES <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" name="id_mes" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <label for="">BONIFICACIONES</label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="container" id="container_bonificaciones2">
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <label for="">DESCUENTOS</label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="container" id="container_descuentos2">
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>TOTAL INGRESO <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" name="total_ingreso" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>TOTAL EGRESO <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" name="total_egreso" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>TOTAL NETO <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-sm" name="total_neto" readonly>
+                                </input>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -212,6 +328,11 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+
+
+
+
 
 <script type="text/javascript" src="<?= base_url() . '/public/dist/js/pagos.js' ?>">
 
