@@ -63,9 +63,48 @@ const porpersonas = () => {
     table_porpersonas = $('#tbl_porpersonas').DataTable({
       data: response.reporte,
       columns: ecolumns,
-      buttons: ['copy', 'csv', 'excel'],
-      //responsive: true
-    }).buttons().container().appendTo('#tbl_porpersonas_wrapper .col-md-6:eq(0)');
+    });
   }
+
+  // Exportar a pdf
+  $(document).on('click', '#btnPdf', () => {
+    var datos = new FormData($(form_busqueda)[0]);
+    $.ajax({
+      url: './porPersonas/search_porpersona',
+      type: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (err) {
+        Swal.fire('Error 500', `${err.statusText}`, "error");
+      }
+    })
+  });
+
+  // Exportar a Excel
+  $(document).on('click', '#btnExcel', () => {
+    var datos = new FormData($(form_busqueda)[0]);
+    $.ajax({
+      url: './porPersonas/search_porpersona',
+      type: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (err) {
+        Swal.fire('Error 500', `${err.statusText}`, "error");
+      }
+    })
+  });
+
 
 };

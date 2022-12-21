@@ -61,6 +61,16 @@
                                     <button id="btnSearch" type="button" class="btn btn-primary btn-sm">
                                         Buscar
                                     </button>
+
+                                    <button id="btnPdf" type="button" class="btn btn-primary btn-sm">
+                                        PDF
+                                    </button>
+
+                                    <button id="btnExcel" type="button" class="btn btn-primary btn-sm">
+                                        Excel
+                                    </button>
+
+
                                 </div>
                             </div>
                         </form>
