@@ -11,7 +11,6 @@ const bonificaciones = () => {
       { data: 'id_bonificacion'          },
       { data: 'nombre_bonificacion'      },
       { data: 'nombre_tipo_bonificacion' },
-      { data: 'cantidad_bonificacion'    },
       { data: 'estado_bonificacion'      },
       { data: 'acciones'                 }
     ],
@@ -20,7 +19,7 @@ const bonificaciones = () => {
 
     columnDefs: [
       {
-        targets: 4,
+        targets: 3,
 
         render: function (data, type, full, meta) {
           if (data == 1) {
@@ -32,7 +31,7 @@ const bonificaciones = () => {
       },
 
       {
-        targets: 5,
+        targets: 4,
         // orderable:false,
         render: function (data, type, full, meta) {
           const btn_accion = full.estado == 2 ? { active: 'fas fa-check', color: 'success' } : { active: 'fas fa-ban', color: 'warning' };

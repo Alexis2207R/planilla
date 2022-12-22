@@ -85,7 +85,7 @@ class Personales extends Controller
             return redirect()->to(base_url());
         }
         $this->validation->setRules([
-            'dni_personal'       => 'required',
+            //'dni_personal'       => 'required',
             'nombre_personal'    => 'required',
             'apellido_personal'  => 'required',
             'sexo_personal'      => 'required',
@@ -107,12 +107,9 @@ class Personales extends Controller
                     'id_regimen'          => $_POST['id_regimen'],
                     'id_remuneracion'     => $_POST['id_remuneracion'],
                     'id_condicion'        => $_POST['id_condicion'],
-                    'ubicacion_dpt'       => strtoupper($_POST['ubicacion_dpt']),
-                    'ubicacion_prov'      => strtoupper($_POST['ubicacion_prov']),
-                    'ubicacion_dist'      => strtoupper($_POST['ubicacion_dist']),
-                    'direccion_personal'  => strtoupper($_POST['direccion_personal']),
                     'nro_cuenta'          => $_POST['nro_cuenta'],
-                    'dias_horas'          => $_POST['dias_horas']
+                    'dias_horas'          => $_POST['dias_horas'],
+                    'fecha_actualizacion' => date('Y-m-d H:i:s')
                 ];
                 $update = $this->update($datos);
                 return $update;
@@ -126,12 +123,9 @@ class Personales extends Controller
                     'id_regimen'          => $_POST['id_regimen'],
                     'id_remuneracion'     => $_POST['id_remuneracion'],
                     'id_condicion'        => $_POST['id_condicion'],
-                    'ubicacion_dpt'       => $_POST['ubicacion_dpt'],
-                    'ubicacion_prov'      => $_POST['ubicacion_prov'],
-                    'ubicacion_dist'      => $_POST['ubicacion_dist'],
-                    'direccion_personal'  => $_POST['direccion_personal'],
                     'nro_cuenta'          => $_POST['nro_cuenta'],
-                    'dias_horas'          => $_POST['dias_horas']
+                    'dias_horas'          => $_POST['dias_horas'],
+                    'fecha_registro' => date('Y-m-d H:i:s')
                 ];
                 $insert = $this->register($datos);
                 return $insert;

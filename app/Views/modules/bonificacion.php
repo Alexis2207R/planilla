@@ -39,7 +39,6 @@
                                 <th class="text-center">CÓDIGO</th>
                                 <th>NOMBRE</th>
                                 <th>TIPO</th>
-                                <th>CANTIDAD</th>
                                 <th class="text-center">ESTADO</th>
                                 <th class="text-center">ACCIONES</th>
                             </tr>

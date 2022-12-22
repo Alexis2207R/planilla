@@ -197,7 +197,7 @@
 
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                    <button type="submit" class="btn btn-success btn-sm" name="btnGuardar">Guardar</button>
                     <button id="btnCancel" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>

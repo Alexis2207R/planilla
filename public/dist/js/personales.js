@@ -136,9 +136,6 @@ const personales = () => {
     $('#form_personal').validate({
 
       rules: {
-        dni_personal: {
-          required: true
-        },
         nombre_personal: {
           required: true
         },
@@ -164,28 +161,28 @@ const personales = () => {
       messages: {
 
         dni_personal: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         nombre_personal: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         apellido_personal: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         sexo_personal: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         id_cargo: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         id_regimen: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         id_remuneracion: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         },
         id_condicion: {
-          required: "Campor requerido"
+          required: "Campo requerido"
         }
 
       },
@@ -215,25 +212,31 @@ const personales = () => {
       success: function (response) {
         // console.log(response);
         if (response) {
-          const Personal = response.Personal;
+          const Personal = response.edit;
           // console.log( response );
           $("#modal-personal .form").append(`<input class="temp" type="hidden" value="${Personal.id_personal}" name="id_personal">`)
           $('#modal-personal [name=dni_personal]').val(Personal.dni_personal);
           $('#modal-personal [name=nombre_personal]').val(Personal.nombre_personal);
-          $('#modal-personal [name=paterno_personal]').val(Personal.paterno_personal);
-          $('#modal-personal [name=materno_personal]').val(Personal.materno_personal);
+          $('#modal-personal [name=apellido_personal]').val(Personal.apellido_personal);
           $('#modal-personal [name=sexo_personal]').val(Personal.sexo_personal);
           $('#modal-personal [name=nivel_remuneracion]').val(Personal.nivel_remuneracion);
           $('#modal-personal [name=condicion_laboral]').val(Personal.condicion_laboral);
-          $('#modal-personal [name=sueldo_personal]').val(Personal.sueldo_personal);
-          $('#modal-personal [name=incentivo_personal]').val(Personal.incentivo_personal);
-          $('#modal-personal [name=costo_dia]').val(Personal.costo_dia);
-          $('#modal-personal [name=costo_hora]').val(Personal.costo_hora);
-          $('#modal-personal [name=costo_minuto]').val(Personal.costo_minuto);
-          $('#modal-personal [name=direccion_personal]').val(Personal.direccion_personal);
-          $('#modal-personal [name=ubicacion_dpt]').val(Personal.ubicacion_dpt);
-          $('#modal-personal [name=ubicacion_prov]').val(Personal.ubicacion_prov);
-          $('#modal-personal [name=ubicacion_dist]').val(Personal.ubicacion_dist);
+          $('#modal-personal [name=nro_cuenta]').val(Personal.nro_cuenta);
+          $('#modal-personal [name=dias_horas]').val(Personal.dias_horas);
+          $('#modal-personal [name=id_cargo]').val(Personal.id_cargo);
+          $('#modal-personal [name=id_regimen]').val(Personal.id_regimen);
+          $('#modal-personal [name=id_remuneracion]').val(Personal.id_remuneracion);
+          $('#modal-personal [name=id_condicion]').val(Personal.id_condicion);
+
+          // $('#modal-personal [name=sueldo_personal]').val(Personal.sueldo_personal);
+          // $('#modal-personal [name=incentivo_personal]').val(Personal.incentivo_personal);
+          // $('#modal-personal [name=costo_dia]').val(Personal.costo_dia);
+          // $('#modal-personal [name=costo_hora]').val(Personal.costo_hora);
+          // $('#modal-personal [name=costo_minuto]').val(Personal.costo_minuto);
+          // $('#modal-personal [name=direccion_personal]').val(Personal.direccion_personal);
+          // $('#modal-personal [name=ubicacion_dpt]').val(Personal.ubicacion_dpt);
+          // $('#modal-personal [name=ubicacion_prov]').val(Personal.ubicacion_prov);
+          // $('#modal-personal [name=ubicacion_dist]').val(Personal.ubicacion_dist);
 
 
           $('#modal-personal').modal('show');
@@ -327,12 +330,74 @@ const personales = () => {
   });
 
 
+  // View Personal
+  $(document).on('click', '#view_personal', function () {
+    const item = $(this).attr('item');
+    resetform();
+    $.ajax({
+      url: './personales/edit_personal',
+      type: "POST",
+      data: { item },
+      dataType: "json",
+      success: function (response) {
+        // console.log(response);
+        if (response) {
+          const Personal = response.edit;
+          // console.log( response );
+          $("#modal-personal .form").append(`<input class="temp" type="hidden" value="${Personal.id_personal}" name="id_personal">`)
+          $('#modal-personal [name=dni_personal]').val(Personal.dni_personal).prop('readonly', true);
+          $('#modal-personal [name=nombre_personal]').val(Personal.nombre_personal).prop('readonly', true);
+          $('#modal-personal [name=apellido_personal]').val(Personal.apellido_personal).prop('readonly', true);
+          $('#modal-personal [name=sexo_personal]').val(Personal.sexo_personal).prop('disabled', true);
+          $('#modal-personal [name=nivel_remuneracion]').val(Personal.nivel_remuneracion).prop('readonly', true);
+          $('#modal-personal [name=condicion_laboral]').val(Personal.condicion_laboral).prop('readonly', true);
+          $('#modal-personal [name=nro_cuenta]').val(Personal.nro_cuenta).prop('readonly', true);
+          $('#modal-personal [name=dias_horas]').val(Personal.dias_horas).prop('readonly', true);
+          $('#modal-personal [name=id_cargo]').val(Personal.id_cargo).prop('disabled', true);
+          $('#modal-personal [name=id_regimen]').val(Personal.id_regimen).prop('disabled', true);
+          $('#modal-personal [name=id_remuneracion]').val(Personal.id_remuneracion).prop('disabled', true);
+          $('#modal-personal [name=id_condicion]').val(Personal.id_condicion).prop('disabled', true);
+          $('#modal-personal [name=btnGuardar]').hide();
+
+          // $('#modal-personal [name=sueldo_personal]').val(Personal.sueldo_personal);
+          // $('#modal-personal [name=incentivo_personal]').val(Personal.incentivo_personal);
+          // $('#modal-personal [name=costo_dia]').val(Personal.costo_dia);
+          // $('#modal-personal [name=costo_hora]').val(Personal.costo_hora);
+          // $('#modal-personal [name=costo_minuto]').val(Personal.costo_minuto);
+          // $('#modal-personal [name=direccion_personal]').val(Personal.direccion_personal);
+          // $('#modal-personal [name=ubicacion_dpt]').val(Personal.ubicacion_dpt);
+          // $('#modal-personal [name=ubicacion_prov]').val(Personal.ubicacion_prov);
+          // $('#modal-personal [name=ubicacion_dist]').val(Personal.ubicacion_dist);
+
+
+          $('#modal-personal').modal('show');
+        }
+      },
+      error: function (err) {
+        Swal.fire('Error 500', `${err.statusText}`, "error");
+      }
+    })
+  })
+
 
   // Esconder el modal
   $('#btnCancel, .close, #btnNew').on('click', function () {
     $('#modal-personal').modal('hide');
+
+    $('#modal-personal [name=dni_personal]').prop('readonly', false);
+    $('#modal-personal [name=nombre_personal]').prop('readonly', false);
+    $('#modal-personal [name=apellido_personal]').prop('readonly', false);
+    $('#modal-personal [name=sexo_personal]').prop('disabled', false);
+    $('#modal-personal [name=nivel_remuneracion]').prop('readonly', false);
+    $('#modal-personal [name=condicion_laboral]').prop('readonly', false);
+    $('#modal-personal [name=nro_cuenta]').prop('readonly', false);
+    $('#modal-personal [name=dias_horas]').prop('readonly', false);
+    $('#modal-personal [name=id_cargo]').prop('disabled', false);
+    $('#modal-personal [name=id_regimen]').prop('disabled', false);
+    $('#modal-personal [name=id_remuneracion]').prop('disabled', false);
+    $('#modal-personal [name=id_condicion]').prop('disabled', false);
+    $('#modal-personal [name=btnGuardar]').show();
+
   })
-
-
 
 }
