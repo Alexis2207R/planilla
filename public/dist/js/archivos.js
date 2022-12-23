@@ -182,17 +182,11 @@ const archivos = () => {
         nombre_archivo: {
           required: true
         },
-        archivo: {
-          required: true
-        }
       },
       messages: {
         nombre_archivo: {
           required: "Campo requerido"
         },
-        archivo: {
-          required: "Campo requerido"
-        }
       },
       errorElement: 'span',
       errorPlacement: function (error, element) {
@@ -224,6 +218,8 @@ const archivos = () => {
           $("#modal-archivo .form").append(`<input class="temp" type="hidden" value="${response.id_archivo}" name="id_archivo">`)
           $('#modal-archivo [name=nombre_archivo]').val(response.nombre_archivo);
           $('#modal-archivo [name=fecha_archivo]').val(response.fecha_archivo);
+          $('#modal-archivo [name=archivo]').prop('required', false);
+
 
           $('#modal-archivo').modal('show');
         }

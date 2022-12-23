@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label for="fornombre">NOMBRE <span class="text-danger">*</span></label>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" name="nombre_archivo" class="form-control form-control-sm" id="fornombre" placeholder="Archivo">
+                                    <input type="text" name="nombre_archivo" class="form-control form-control-sm" id="fornombre" placeholder="Archivo" required>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label for="forarchivo">SELECCIONE EL ARCHIVO</label>
                                 <div class="input-group input-group-sm">
-                                    <input type="file" name="archivo" class="form-control form-control-sm" id="forarchivo" placeholder="Seleccione el archivo">
+                                    <input type="file" name="archivo" class="form-control form-control-sm" id="forarchivo" placeholder="Seleccione el archivo" required>
                                 </div>
                             </div>
                         </div>
