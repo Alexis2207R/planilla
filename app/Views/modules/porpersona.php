@@ -29,10 +29,10 @@
                     <div class="card-tools">
                         <form method="post" id="form_busqueda" class="form">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="forpersonal">PERSONAL <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm select2" name="id_personal" id="forpersonal">
+                                        <label for="id_personal">PERSONAL <span class="text-danger">*</span></label>
+                                        <select class="form-control form-control-sm select2" name="id_personal" id="id_personal" required>
                                             <option selected disabled>Seleccionar...</option>
                                             <?php
                                             foreach ($personales as $item) {
@@ -43,9 +43,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="foryear">AÑO <span class="text-danger">*</span></label>
+                                        <label for="foryear">AÑO INICIO<span class="text-danger">*</span></label>
                                         <select class="form-control form-control-sm select2" name="id_year" id="foryear">
                                             <option selected disabled>Seleccionar...</option>
                                             <?php
@@ -57,25 +57,35 @@
                                     </div>
                                 </div>
 
-
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="foryear">TIPO <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sm select2" name="type_report" id="type_report">
+                                        <label for="foryear">AÑO FIN<span class="text-danger">*</span></label>
+                                        <select class="form-control form-control-sm select2" name="id_year2" id="foryear2">
                                             <option selected disabled>Seleccionar...</option>
-                                            <option value="1">Ver</option>
-                                            <option value="2">Pdf</option>
-                                            <option value="3">Excel</option>
+                                            <?php
+                                            foreach ($years as $item) {
+                                                echo '<option value="' . $item['id_year'] . '">' . $item['nombre_year'] . '</option>';
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="btnSearch"><span class="text-danger"></span></label>
-                                        <button id="btnSearch" type="submit" class="btn btn-primary btn-sm">
-                                            Buscar
-                                        </button>
+
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" id="btnSearch" name="options" autocomplete="off"> Buscar
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" id="btnPdf" name="options" autocomplete="off"> Pdf
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" id="btnExcel" name="options" autocomplete="off"> Excel
+                                            </label>
+                                        </div>
+
                                     </div>
                                 </div>
 

@@ -4,6 +4,10 @@ const porpersonas = () => {
   let table_porpersonas = $('#tbl_porpersonas').DataTable({})
 
   $(document).on('click', '#btnSearch', () => {
+    if (!isValidForm()) {
+      Swal.fire('Error 500', 'Seleccione a un personal', 'error');
+      return;
+    }
     var datos = new FormData($(form_busqueda)[0]);
     $.ajax({
       url: './porPersonas/search_porpersona',
@@ -15,22 +19,11 @@ const porpersonas = () => {
       dataType: "json",
       success: function (response) {
         console.log(response);
-        // table_porpersonas.data(response);
-        // table_porpersonas.draw();
-        //table_porpersonas.rows.add(response.reporte).draw();
-        createTable(response);
-        // if (response.status == 200) {
-        //   Swal.fire({
-        //     position: "center",
-        //     icon: "success",
-        //     title: response.msg,
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   });
-        //   table_porpersonas.ajax.reload();
-        // } else {
-        //   Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
-        // }
+        if (response.status == 200) {
+          createTable(response);
+        } else {
+          Swal.fire(`Error ${response.status}`, `${response.msg}`, "error");
+        }
       },
       error: function (err) {
         Swal.fire('Error 500', `${err.statusText}`, "error");
@@ -70,13 +63,12 @@ const porpersonas = () => {
   $(document).on('click', '#btnPdf', () => {
     var datos = new FormData($(form_busqueda)[0]);
     $.ajax({
-      url: './porPersonas/search_porpersona',
+      url: './porPersonas/pdf',
       type: "POST",
       data: datos,
       cache: false,
       contentType: false,
       processData: false,
-      dataType: "json",
       success: function (response) {
         console.log(response);
       },
@@ -88,17 +80,26 @@ const porpersonas = () => {
 
   // Exportar a Excel
   $(document).on('click', '#btnExcel', () => {
+    if (!isValidForm()) {
+      Swal.fire('Error 500', 'Seleccione a un personal', 'error');
+      return;
+    }
     var datos = new FormData($(form_busqueda)[0]);
     $.ajax({
-      url: './porPersonas/search_porpersona',
-      type: "POST",
+      url: './porPersonas/excel',
+      type: 'POST',
       data: datos,
       cache: false,
       contentType: false,
       processData: false,
-      dataType: "json",
+      dataType: 'json',
       success: function (response) {
-        console.log(response);
+        var a = document.createElement('a');
+        a.href = response.file;
+        a.download = response.name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       },
       error: function (err) {
         Swal.fire('Error 500', `${err.statusText}`, "error");
@@ -106,5 +107,11 @@ const porpersonas = () => {
     })
   });
 
+  function isValidForm() {
+    let jqIdPersonal = $('#id_personal');
+    if (jqIdPersonal.val() == null || jqIdPersonal.val() == '')
+      return false;
+    return true;
+  }
 
 };

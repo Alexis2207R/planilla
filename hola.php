@@ -1,7 +1,15 @@
 <?php
 
-$bs = '1';
-$ex = explode(',', $bs);
+$char = 'G';
+$intChar = ord($char);
 
-foreach ($ex as $a)
-    echo 'hola' . $a;
+$nextInt = $intChar + 1;
+$nextChar = chr($nextInt);
+
+// $charInt = intval($char);
+// $newCharInt = $charInt + 'A';
+
+echo $char . ' ' . $intChar;
+echo $nextChar . ' ' . $nextInt;
+
+echo 'genial' . 3;
