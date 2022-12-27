@@ -69,8 +69,15 @@ const porpersonas = () => {
       cache: false,
       contentType: false,
       processData: false,
+      dataType: 'json',
       success: function (response) {
         console.log(response);
+        var a = document.createElement('a');
+        a.href = response.file;
+        a.download = response.name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       },
       error: function (err) {
         Swal.fire('Error 500', `${err.statusText}`, "error");

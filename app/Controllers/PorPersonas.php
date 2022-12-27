@@ -12,6 +12,7 @@ use App\Models\YearModel;
 use CodeIgniter\Controller;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Dompdf\Dompdf;
 
 class PorPersonas extends Controller
 {
@@ -252,7 +253,34 @@ class PorPersonas extends Controller
 
     public function pdf()
     {
-        return json_encode(['status' => 200, 'msg' => 'Falta implementar']);
+        if ($this->request->isAjax())
+        {
+            $fileName = 'reporte.pdf';
+
+            $dompdf = new Dompdf();
+
+            $dompdf->loadHtml('hello world');
+
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'landscape');
+
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            // Output the generated PDF to Browser
+            // $dompdf->stream('hola.pdf');
+
+            // Output the generated PDF to variable and return it to save it into the file
+            $file = $dompdf->output();
+
+            $data = [
+                'name' => $fileName,
+                'file' => 'data:application/pdf;base64,' . base64_encode($file)
+            ];
+
+            return $this->response->setJSON($data);
+
+        }
     }
 
     public function view_personal()
