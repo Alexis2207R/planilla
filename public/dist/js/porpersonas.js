@@ -72,6 +72,7 @@ const porpersonas = () => {
       dataType: 'json',
       success: function (response) {
         console.log(response);
+        // return;
         var a = document.createElement('a');
         a.href = response.file;
         a.download = response.name;

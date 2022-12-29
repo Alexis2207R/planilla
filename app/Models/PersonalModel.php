@@ -23,6 +23,18 @@ class PersonalModel extends Model
                 ->getResultArray();
   }
 
+  public function mdListarPersonal($id)
+  {
+    return $this->join('regimen_pensional tp',   'tp.id_regimen = personal.id_regimen')
+                ->join('cargo a',                'a.id_cargo = personal.id_cargo')
+                ->join('nivel_remunerativo nr',  'nr.id_remuneracion = personal.id_remuneracion')
+                ->join('condicion_laboral cl',   'cl.id_condicion = personal.id_condicion')
+                ->where('personal.id_personal', $id)
+                ->get()
+                ->getResultArray();
+  }
+
+
   public function getAllActive()
   {
     return $this->where('estado_personal', 1)

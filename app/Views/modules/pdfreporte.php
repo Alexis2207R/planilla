@@ -1,180 +1,178 @@
-<?php echo view('include/header'); ?>
-<?php 
-// var_dump($persona);
-// die; 
-?>
-<!-- Main content -->
-<section class="invoice">
-  <h2 class="page-header text-center">PLANILLA ANUAL - NORMA DE PAGOS: HABERES DEL AÑO <?= $persona[0]['nombre_year']?></h2>
-  <br>
-  <!-- title row -->
-  <div class="row">
-    <div class="col-12">
-      <h2 class="page-header">
-        <img src="<?= base_url().'/public/dist/img/DRTC.png'?>" width="40px" alt=""> S.M.TRANSP. - DRTC-SM
-        <small class="float-right">Fecha: 21/12/202</small>
-      </h2>
-      <h2>NRO RUC: 20178677684</h2>
-    </div>
-    <!-- /.col -->
-  </div>
-  <div class="row">
-    <!-- accepted payments column -->
-    <div class="col-6">
-      <p class="lead">CONTROL Y AUDITORIA:</p>
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col">
-            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-              200.9001.3999999.5000006.15.006.0012
-            </p>
-          </div>
-          <div class="col">
-            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-              0025 CONTROL Y AUDITORIA
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col">
-            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-              DEPENDECIA: 0000000000330000
-            </p>
-          </div>
-          <div class="col">
-            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-              CONTROL Y AUDITORIA
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /.row -->
-  <!-- Table -->
-  <div class="row invoice-info">
-    <!-- /.col -->
-    <div class="col-12">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead class="thead-dark">
-            <th>ATRIBUTOS</th>
-            <th>TRABAJADOR</th>
-          </thead>
-          <tr>
-            <th>Nombres</th>
-            <td><?= $persona[0]['nombre_personal']?></td>
-          </tr>
-          <tr>
-            <th>Apellidos</th>
-            <td><?= $persona[0]['apellido_personal'] ?></td>
-          </tr>
-          <tr>
-            <th>Nro. Cuenta</th>
-            <td><?= $persona[0]['nro_cuenta'] ?></td>
-          </tr>
-          <tr>
-            <th>Reg. Pens</th>
-            <td><?= $persona[0]['id_regimen'] ?></td>
-          </tr>
-          <tr>
-            <th>Cond. Lab</th>
-            <td><?= $persona[0]['id_condicion'] ?></td>
-          </tr>
-          <tr>
-            <th>Nivel Rem.</th>
-            <td><?= $persona[0]['id_remuneracion'] ?></td>
-          </tr>
-          <tr>
-            <th>Cargo Estructural</th>
-            <td><?= $persona[0]['id_cargo'] ?></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!-- / Table -->
-  <!-- Table row -->
-  <div class="row">
-    <div class="col-12 table-responsive">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th>MES</th>
-            <?php 
-              foreach ($bonificaciones as $bonificacion) {
-                echo '<th>' . $bonificacion['nombre_bonificacion'] . '</th>';
-              }
-            ?>
-            <th>TOTAL INGRESO</th>
-            <?php 
-              foreach ($descuentos as $descuento) {
-                echo '<th>' . $descuento['nombre_descuento'] . '</th>';
-              }
-            ?>
-            <th>TOTAL EGRESO</th>
-            <th>TOTAL NETO</th>
-          </tr>
-        </thead>
-        <?php
-          foreach ($persona as $p) {
-        ?>
-        <tbody>
-          <tr>
-            <td><?= $p['nombre_mes'] ?></td>
-            <?php 
-              foreach ($bonificaciones as $bonificacion) {
-                echo '<td class="text-center">' . $bonificacion['cantidad_bonificacion'] . '</td>';
-              }
-            ?>
-            <td class="text-center"><?= $p['total_ingreso'] ?></td>
-            <?php 
-              foreach ($descuentos as $descuento) {
-                echo '<td class="text-center">' . $descuento['cantidad_descuento'] . '</td>';
-              }
-            ?>
-            <td class="text-center"><?= $p['total_egreso'] ?></td>
-            <td class="text-center"><?= $p['total_neto'] ?></td>
-          </tr>
-        </tbody>
-        <?php 
-          }
-        ?>
-        <tfoot class="table table-striped">
-          <tr>
-            <th>TOTAL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>
-              <?php
-                $total = 0;
-                foreach ($persona as $p) {
-                  $total += $p['total_neto'];
-                }
-                echo '<td class="text-center">' . $total . '</td>';
-              ?>
-            </th>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-</section>
-<!-- /.content -->
+<!doctype html>
+<html lang="en">
 
-<?php echo view('include/footer'); ?>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <!-- Milligram CSS Framework :D -->
+    <style type="text/css">
+        <?= $this->include('modules/milligram') ?>
+    </style>
+
+    <style type="text/css">
+        body {
+            color: black;
+            font-size: 1.1em;
+        }
+
+        td,
+        th {
+            padding: 1.0rem 1.2rem;
+        }
+
+        .td-border {
+            border-bottom: 0.1rem solid black;
+            border-top: 0.1rem solid black;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section class="invoice">
+        <h4 class="text-center">
+            REPORTE PLANILLA - HABERES DESDE <?php echo ($desde === null ? 'INICIO' : $desde['nombre_year']) ?> HASTA <?php echo ($hasta === null ? 'LA ACTUALIDAD' : $hasta['nombre_year']) ?>
+        </h4>
+
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <p> S.M. TRANSP. DRTC-SM </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <div class="float-left">
+                        <p> NRO RUC: 20178677684 </p>
+                    </div>
+
+                    <div class="float-right">
+                        <p> FECHA: <?= date('Y-m-d H:i:s') ?> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <br />
+            <br />
+            <br />
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <p> 200.9001.3999999.5000006.15.006.0012 0025 CONTROL Y AUDITORIA </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <p> DEPENDENCIA: 0000000000330000 CONTROL Y AUDITORIA </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> ATRIBUTOS </th>
+                                <th> TRABAJADOR </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nombres</td>
+                                <td><?= $personal['nombre_personal'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Apellidos</td>
+                                <td><?= $personal['apellido_personal'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Nro. Cuenta</td>
+                                <td><?= $personal['nro_cuenta'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Reg. Pens</td>
+                                <td><?= $personal['nombre_regimen'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Cond. Lab</td>
+                                <td><?= $personal['condicion'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Nivel Rem.</td>
+                                <td><?= $personal['nivel'] ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>Cargo Estructural</td>
+                                <td><?= $personal['nombre_cargo'] ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> ATRIBUTOS </th>
+                                <th> MONTO </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($bonificaciones as $bonificacion) { ?>
+                                <tr>
+                                    <td> <?= $bonificacion['nombre_bonificacion'] ?> </td>
+                                    <td> <?= $totales[$bonificacion['nombre_bonificacion']] ?></td>
+                                </tr>
+                            <?php } ?>
+                            <tr class="tr-border">
+                                <td class="td-border">TOTAL INGRESO</td>
+                                <td class="td-border"> <?= $totales['total_ingreso'] ?> </td>
+                            </tr>
+                            <?php foreach ($descuentos as $descuento) { ?>
+                                <tr>
+                                    <td> <?= $descuento['nombre_descuento'] ?> </td>
+                                    <td> <?= $totales[$descuento['nombre_descuento']] ?></td>
+                                </tr>
+                            <?php } ?>
+                            <tr>
+                                <td class="td-border">TOTAL EGRESO</td>
+                                <td class="td-border"> <?= $totales['total_egreso'] ?> </td>
+                            </tr>
+                            <tr>
+                                <td class="h6 td-border">TOTAL NETO</td>
+                                <td class="td-border"> <?= $totales['total_neto'] ?> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>

@@ -22,7 +22,7 @@
 
         <!-- Default box -->
         <div class="row justify-content-center">
-            <div class="card col-lg-10">
+            <div class="card col-lg-11">
                 <div class="card-header">
                     <h3 class="card-title">Reporte de pagos</h3>
 
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="card-body p-3">
-                    <table id="tbl_porpersonas" class="table table-hover table-sm">
+                    <table id="tbl_porpersonas" class="table table-hover table-sm small">
                         <thead>
                             <tr>
                                 <th class="text-center">MES

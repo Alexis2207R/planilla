@@ -79,35 +79,7 @@ class PorPersonas extends Controller
             $bonificaciones = $this->modBonificacion->getAllActive();
             $descuentos = $this->modDescuento->getAllActive();
 
-            $reporte = [];
-            foreach ($pagos as $data)
-            {
-                $realData = [
-                    'nombre_mes'      => $data['nombre_mes'],
-                    'numero_planilla' => $data['numero_planilla'],
-                    'dias'            => $data['dias'],
-                    'nombre_year'     => $data['nombre_year'],
-                    'id_pago'         => $data['id_pago'],
-                    'total_egreso'    => $data['total_egreso'],
-                    'total_ingreso'   => $data['total_ingreso'],
-                    'total_neto'      => $data['total_neto'],
-                ];
-
-                foreach ($bonificaciones as $bonificacion)
-                    $realData[$bonificacion['nombre_bonificacion']] = '';
-                foreach ($descuentos as $descuento)
-                    $realData[$descuento['nombre_descuento']] = '';
-
-                $actualDescuentos = $this->modPagoDescuento->mdVerDePago($data['id_pago']);
-                foreach ($actualDescuentos as $actual)
-                    $realData[$actual['nombre_descuento']] = $actual['cantidad_pago_descuento'];
-
-                $actualBonificaciones = $this->modPagoBonificacion->mdVerDePago($data['id_pago']);
-                foreach ($actualBonificaciones as $actual)
-                    $realData[$actual['nombre_bonificacion']] = $actual['cantidad_pago_bonificacion'];
-
-                array_push($reporte, $realData);
-            }
+            $reporte = $this->getReporteFormatSearch($pagos, $bonificaciones, $descuentos);
 
             return json_encode(['status' => 200, 'reporte' => $reporte, 'bonificaciones' => $bonificaciones, 'descuentos' => $descuentos]);
         } else {
@@ -225,7 +197,8 @@ class PorPersonas extends Controller
                 {
                     $letter = ord('A');
 
-                    for ($i = 0; $i < count($pago) - 1; $i++)
+                    // Si por algo falla!..resta aqui en la condicion
+                    for ($i = 0; $i < count($pago) - 2; $i++)
                     {
                         $indice = $sheet->getCell(chr($letter) . '2')->getValue();
                         $sheet->setCellValue(chr($letter) . $row, $pago[$indice]);
@@ -255,21 +228,92 @@ class PorPersonas extends Controller
     {
         if ($this->request->isAjax())
         {
+            $idPersonal = $_POST['id_personal'];
+            if (isset($_POST['id_year']) && isset($_POST['id_year2']))
+            {
+                $inicio = $_POST['id_year'];
+                $fin = $_POST['id_year2'];
+                $years = $this->modYear->getAllActive();
+                $saveYear = false;
+                $idYears = [];
+                // NOTE: Los anios deben estar ordenados en la base de datos para que esto funcione
+                foreach ($years as $year)
+                {
+                    if ($year['id_year'] == $fin)
+                    {
+                        array_push($idYears, $year['id_year']);
+                        break;
+                    }
+                    if ($year['id_year'] == $inicio)
+                        $saveYear = true;
+                    if ($saveYear == true)
+                        array_push($idYears, $year['id_year']);
+                }
+                $pagos = $this->modPago->mdListarDePersonaPorAnios($idPersonal, $idYears);
+                $desde = $this->modYear->find($_POST['id_year']);
+                $hasta = $this->modYear->find($_POST['id_year2']);
+
+            }
+            else if (!isset($_POST['id_year']) && !isset($_POST['id_year2']))
+            {
+                $pagos = $this->modPago->mdListarDePersonaPorTodo($idPersonal);
+                $desde = null;
+                $hasta = null;
+            }
+            else
+            {
+                return json_encode(['status' => 400, 'msg' => 'Seleccione una fecha válida']);
+            }
+
+            $bonificaciones = $this->modBonificacion->getAllActive();
+            $descuentos = $this->modDescuento->getAllActive();
+
+            $reporte = $this->getReporteFormatSearch($pagos, $bonificaciones, $descuentos);
+            $totales = [];
+
+            foreach ($bonificaciones as $bonificacion)
+                $totales[$bonificacion['nombre_bonificacion']] = 0.0;
+            foreach ($descuentos as $descuento)
+                $totales[$descuento['nombre_descuento']] = 0.0;
+            $totales['total_egreso'] = 0.0;
+            $totales['total_ingreso'] = 0.0;
+            $totales['total_neto'] = 0.0;
+
+            // Sumar todos los totales
+            foreach ($reporte as $pago)
+            {
+                foreach ($bonificaciones as $bonificacion)
+                    $totales[$bonificacion['nombre_bonificacion']] += floatval($pago[$bonificacion['nombre_bonificacion']]);
+                foreach ($descuentos as $descuento)
+                    $totales[$descuento['nombre_descuento']] += floatval($pago[$descuento['nombre_descuento']]);
+                $totales['total_egreso']  += floatval($pago['total_egreso']);
+                $totales['total_ingreso'] += floatval($pago['total_ingreso']);
+                $totales['total_neto']    += floatval($pago['total_neto']);
+            }
+
+            $personal = $this->modPersonal->mdListarPersonal($idPersonal);
+            $personal = $personal[0];
+
+            $dataPDF = [
+                'personal'       => $personal,
+                'totales'        => $totales,
+                'desde'          => $desde,
+                'hasta'          => $hasta,
+                'bonificaciones' => $bonificaciones,
+                'descuentos'     => $descuentos
+            ];
+
+            //return json_encode($dataPDF);
+
+            $html = view('modules/pdfreporte', $dataPDF);
+
             $fileName = 'reporte.pdf';
-
             $dompdf = new Dompdf();
-
-            $dompdf->loadHtml('hello world');
-
+            $dompdf->loadHtml($html);
             // (Optional) Setup the paper size and orientation
             $dompdf->setPaper('A4', 'landscape');
-
             // Render the HTML as PDF
             $dompdf->render();
-
-            // Output the generated PDF to Browser
-            // $dompdf->stream('hola.pdf');
-
             // Output the generated PDF to variable and return it to save it into the file
             $file = $dompdf->output();
 
@@ -279,27 +323,40 @@ class PorPersonas extends Controller
             ];
 
             return $this->response->setJSON($data);
-
         }
     }
 
-    public function view_personal()
+    private function getReporteFormatSearch($pagos, $bonificaciones, $descuentos)
     {
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $id_personal = $_POST['id_personal'];
-            $id_year = $_POST['id_year'];
-            $PersonaModel = new PagoModel();
-            $persona = $PersonaModel->mdListarDePersonaPorAnio($id_personal, $id_year);
-            $bonificaciones = $this->modBonificacion->getAllActive();
-            $descuentos = $this->modDescuento->getAllActive();
-            $datos = [
-                'persona' => $persona,
-                'bonificaciones' => $bonificaciones,
-                'descuentos' => $descuentos,
+        $reporte = [];
+        foreach ($pagos as $data) {
+            $realData = [
+                'nombre_mes'      => $data['nombre_mes'],
+                'numero_planilla' => $data['numero_planilla'],
+                'dias'            => $data['dias'],
+                'nombre_year'     => $data['nombre_year'],
+                'id_pago'         => $data['id_pago'],
+                'total_egreso'    => $data['total_egreso'],
+                'total_ingreso'   => $data['total_ingreso'],
+                'total_neto'      => $data['total_neto'],
             ];
-            return view('modules/pdfreporte', $datos);
+
+            foreach ($bonificaciones as $bonificacion)
+                $realData[$bonificacion['nombre_bonificacion']] = '';
+            foreach ($descuentos as $descuento)
+                $realData[$descuento['nombre_descuento']] = '';
+
+            $actualDescuentos = $this->modPagoDescuento->mdVerDePago($data['id_pago']);
+            foreach ($actualDescuentos as $actual)
+                $realData[$actual['nombre_descuento']] = $actual['cantidad_pago_descuento'];
+
+            $actualBonificaciones = $this->modPagoBonificacion->mdVerDePago($data['id_pago']);
+            foreach ($actualBonificaciones as $actual)
+                $realData[$actual['nombre_bonificacion']] = $actual['cantidad_pago_bonificacion'];
+
+            array_push($reporte, $realData);
         }
-        
+        return $reporte;
     }
 
 }
