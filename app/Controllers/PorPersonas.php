@@ -303,11 +303,11 @@ class PorPersonas extends Controller
                 'descuentos'     => $descuentos
             ];
 
-            //return json_encode($dataPDF);
-
             $html = view('modules/pdfreporte', $dataPDF);
 
-            $fileName = 'reporte.pdf';
+            //$fileName = 'reporte.pdf';
+            $fileName = $personal['nombre_personal'] . ' ' . $personal['apellido_personal'] . '.pdf';
+
             $dompdf = new Dompdf();
             $dompdf->loadHtml($html);
             // (Optional) Setup the paper size and orientation
