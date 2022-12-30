@@ -130,9 +130,9 @@ class PorPersonas extends Controller
             $sheet = $excel->getActiveSheet();
 
             // Titulo
-            $sheet->setCellValue('A1', 'SEÑOR JEFE DE LA UNIDAD DE PERSONAL DE LA DRTC - SM');
-            $sheet->setCellValue('A2', 'A CONTINUACIÓN SE EXPIDE EL RECORD POR TIEMPO DE SERVICIOS DE: ');
-            $sheet->setCellValue('A3', $personal['nombre_personal'] . ' ' . $personal['apellido_personal']);
+            $sheet->setCellValue('H1', 'SEÑOR JEFE DE LA UNIDAD DE PERSONAL DE LA DRTC - SM');
+            $sheet->setCellValue('G2', 'A CONTINUACIÓN SE EXPIDE EL RECORD POR TIEMPO DE SERVICIOS DE: ');
+            $sheet->setCellValue('H3', $personal['nombre_personal'] . ' ' . $personal['apellido_personal']);
 
             // Encabezado
             $rowEncabezado = 4; // La fila del encabezado
@@ -154,6 +154,8 @@ class PorPersonas extends Controller
             $lastLetter++;
             $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, 'TOTAL NETO');
             $lastLetter++;
+            // Todo el titulo y encabezado en negrita
+            $sheet->getStyle('A1:' . chr($lastLetter) . $rowEncabezado)->getFont()->setBold(true);
 
             // Cuerpo
             $row = $rowEncabezado + 1; // La fila del cuerpo del reporte
@@ -193,6 +195,7 @@ class PorPersonas extends Controller
                 }
 
                 $sheet->setCellValue('A' . $row, $year['nombre_year']);
+                $sheet->getStyle('A' . $row)->getFont()->setBold(true);
                 $row++;
 
                 foreach ($reporte as $pago)
