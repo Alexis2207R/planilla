@@ -1,15 +1,18 @@
 <?php
 
-$char = 'G';
-$intChar = ord($char);
+class A
+{
+    function __construct()
+    {
+        echo 'ghola';
+    }
+};
 
-$nextInt = $intChar + 1;
-$nextChar = chr($nextInt);
+class B extends A {
+    function __construct()
+    {
 
-// $charInt = intval($char);
-// $newCharInt = $charInt + 'A';
+    }
+}
 
-echo $char . ' ' . $intChar;
-echo $nextChar . ' ' . $nextInt;
-
-echo 'genial' . 3;
+$c = new B();

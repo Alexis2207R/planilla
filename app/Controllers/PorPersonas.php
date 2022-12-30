@@ -130,31 +130,33 @@ class PorPersonas extends Controller
             $sheet = $excel->getActiveSheet();
 
             // Titulo
-            $sheet->setCellValue('A1', $personal['nombre_personal'] . ' ' . $personal['apellido_personal']);
+            $sheet->setCellValue('A1', 'SEÑOR JEFE DE LA UNIDAD DE PERSONAL DE LA DRTC - SM');
+            $sheet->setCellValue('A2', 'A CONTINUACIÓN SE EXPIDE EL RECORD POR TIEMPO DE SERVICIOS DE: ');
+            $sheet->setCellValue('A3', $personal['nombre_personal'] . ' ' . $personal['apellido_personal']);
 
             // Encabezado
-            $sheet->setCellValue('A2', 'MES / ANIO');
-            $sheet->setCellValue('B2', 'NRO PLANILLA');
-            $sheet->setCellValue('C2', 'DIAS');
+            $rowEncabezado = 4; // La fila del encabezado
+            $sheet->setCellValue('A' . $rowEncabezado, 'MES / AÑO');
+            $sheet->setCellValue('B' . $rowEncabezado, 'NRO PLANILLA');
+            $sheet->setCellValue('C' . $rowEncabezado, 'DIAS');
             $lastLetter = ord('D');
             foreach ($bonificaciones as $bonificacion) {
-                $sheet->setCellValue(chr($lastLetter) . '2', $bonificacion['nombre_bonificacion']);
+                $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, $bonificacion['nombre_bonificacion']);
                 $lastLetter++;
             }
-            $sheet->setCellValue(chr($lastLetter) . '2', 'INGRESO');
+            $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, 'INGRESO');
             $lastLetter++;
             foreach ($descuentos as $descuento) {
-                $sheet->setCellValue(chr($lastLetter) . '2', $descuento['nombre_descuento']);
+                $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, $descuento['nombre_descuento']);
                 $lastLetter++;
             }
-            $sheet->setCellValue(chr($lastLetter) . '2', 'EGRESO');
+            $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, 'EGRESO');
             $lastLetter++;
-            $sheet->setCellValue(chr($lastLetter) . '2', 'TOTAL NETO');
+            $sheet->setCellValue(chr($lastLetter) . $rowEncabezado, 'TOTAL NETO');
             $lastLetter++;
-
-            $row = 3;
 
             // Cuerpo
+            $row = $rowEncabezado + 1; // La fila del cuerpo del reporte
             foreach ($years as $year)
             {
                 $pagos = $this->modPago->mdListarDePersonaPorAnio($idPersonal, $year['id_year']);
@@ -164,7 +166,7 @@ class PorPersonas extends Controller
                 {
                     // NOTE: Estos nombres deben ser igual al de la cabecera del excel
                     $realData = [
-                        'MES / ANIO'      => $data['nombre_mes'],
+                        'MES / AÑO'      => $data['nombre_mes'],
                         'NRO PLANILLA'    => $data['numero_planilla'],
                         'DIAS'            => $data['dias'],
                         'nombre_year'     => $data['nombre_year'],
@@ -200,7 +202,7 @@ class PorPersonas extends Controller
                     // Si por algo falla!..resta aqui en la condicion
                     for ($i = 0; $i < count($pago) - 2; $i++)
                     {
-                        $indice = $sheet->getCell(chr($letter) . '2')->getValue();
+                        $indice = $sheet->getCell(chr($letter) . $rowEncabezado)->getValue();
                         $sheet->setCellValue(chr($letter) . $row, $pago[$indice]);
                         $letter++;
                     }
