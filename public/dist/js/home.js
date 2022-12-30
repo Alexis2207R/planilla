@@ -292,7 +292,13 @@ const perfiles = () => {
                 })
             }
         });
-    })
+    });
+
+    // Add Perfil
+    $(document).on('click', '#btnNew', function () {
+        $('#modal-perfil').modal('show');
+    });
+
 }
 
 const usuarios = () => {
